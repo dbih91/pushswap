@@ -1,13 +1,13 @@
 #!/bin/bash
-make re
+make
 ((C=0))
-((N=256))
+((N=32))
 while [ $C -ne $N ]
 do
 	ARR[$C]=$(($C))
 	((C++))
 done
-((P=1))
+((P=3))
 while [ $P -ne 0 ]
 do
 ((C=0))
@@ -24,7 +24,7 @@ done
 ALL="${ARR[*]}"
 echo ${ARR[*]}
 ./push_swap $ALL
-
+make fclean
 
 #while [ $C -ne $N ]
 #do

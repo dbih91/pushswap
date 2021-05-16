@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/05/14 05:19:05  /  2021/05/14 05:19:09 @cclarice    #
+#    Created/Updated: 2021/05/16 15:03:37  /  2021/05/16 15:03:40 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ OBJS = $(patsubst src/%.c, obj/%.o, $(SRCS))
 # COMPILE
 FLAG = -Wall -Wextra -Werror -O3
 MKDR = mkdir -p
-SAY  = echo
+SAY  = echo -e
 RM   = rm -rf
 CC   = clang
 
