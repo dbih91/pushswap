@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/17 22:40:00  /  2021/05/17 22:41:11 @cclarice   */
+/*   Created/Updated: 2021/05/17 23:07:43  /  2021/05/17 23:49:40 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int	main(int c, char *v[])
 	if (c >= 3)
 	{
 		sort.a = create_list(i, c - 1);
-		sort_list()
+		//sort_list()
 	}
 	return (0);
 }
