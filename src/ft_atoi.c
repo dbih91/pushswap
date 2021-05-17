@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   ft_atoi.c                                cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/14 04:12:17  /  2021/05/14 04:26:18 @cclarice   */
+/*   Created/Updated: 2021/05/17 22:38:46  /  2021/05/17 22:39:02 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_atoi(const char *str)
 	while (*str == '0')
 		str++;
 	while ((*str >= '0' && *str <= '9' && ret <= 214748363)
-		|| (*str >= '0' && *str <= '9' && ret == 214748364))
+		|| (*str >= '0' && *str <= '7' && ret == 214748364))
 	{
 		ret *= 10;
 		ret += *str - '0';
@@ -40,5 +40,5 @@ int	ft_atoi(const char *str)
 			return (2147483647);
 		return (-2147483648);
 	}
-	return (ret);
+	return (ret * sgn);
 }

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*       ::::::    ::::::   :::  ::::::::  ::::::::   :::  ::::::    :::::::  */
 /*     :+:   :+: :+:   :+: :+: :+:   :+:  :+:    :+: :+: :+:   :+: :+:    :+: */
@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/16 14:22:52  /  2021/05/16 15:09:49 @cclarice   */
+/*   Created/Updated: 2021/05/16 18:27:22  /  2021/05/16 18:27:36 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,22 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-// ◦ read()
-// ◦ write()
-// ◦ malloc()
-// ◦ free()
-// ◦ exit()
+// includes:
+//     unistd: read() write()
+//     stdlib: malloc() free()
+//     exit()         
 
-typedef struct s_list
+typedef struct s_elem
 {
-	int					c;
-	struct s_list		*next;
-}								t_list;
+	int					i;
+	struct s_elem		*n;
+}				t_elem;
+
+typedef struct s_sort
+{
+	t_elem *a;
+	t_elem *b;
+}				t_sort;
 
 unsigned int			ft_strlen(const char *str);
 int						ft_atoi(const char *str);
