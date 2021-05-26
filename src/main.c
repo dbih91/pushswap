@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/23 21:46:28  /  2021/05/23 21:46:29 @cclarice   */
+/*   Created/Updated: 2021/05/26 19:33:42  /  2021/05/26 19:41:48 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,60 +114,6 @@ t_elem	*create_list(int *i, int c)
 	return (ret);
 }
 
-void	writesort(t_sort sort)
-{
-	t_elem *ptr;
-
-	ptr = sort.a;
-	printf("\n\n\n\033[1;32mA[");
-	while (ptr)
-	{
-		printf("%d", ptr->i);
-		if (ptr->n)
-			printf(", ");
-		ptr = ptr->n;
-	}
-	printf("]\033[0m\n");
-	ptr = sort.b;
-	printf("\033[1;92mB[");
-	while (ptr)
-	{
-		printf("%d", ptr->i);
-		if (ptr->n)
-			printf(", ");
-		ptr = ptr->n;
-	}
-	printf("]\033[0m\n");
-}
-
-void	v(t_sort *sort)
-{
-	if (VISUAL)
-		writesort(*sort);
-}
-
-void	sort_list(t_sort *sort)
-{
-	rrta_a(sort);
-	push_b(sort);
-	rrta_a(sort);
-	push_b(sort);
-	push_b(sort);
-	swap_a(sort);
-	push_a(sort);
-	swap_a(sort);
-	push_b(sort);
-	rrta_a(sort);
-	push_b(sort);
-	push_b(sort);
-	swap_a(sort);
-	push_a(sort);
-	push_a(sort);
-	push_a(sort);
-	push_a(sort);
-	push_a(sort);
-}
-
 int	main(int c, char *v[])
 {
 	int		*i;
@@ -178,7 +124,7 @@ int	main(int c, char *v[])
 	if (c >= 3)
 	{
 		sort.a = create_list(i, c - 1);
-		sort_list(&sort);
+		init_sort(&sort);
 	}
 	return (0);
 }

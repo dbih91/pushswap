@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   game_rules.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/19 15:22:38  /  2021/05/19 15:32:41 @cclarice   */
+/*   Created/Updated: 2021/05/27 00:15:22  /  2021/05/27 00:22:42 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,49 +25,54 @@
 
 void	swap_a(t_sort *sort)
 {
-	int temp;
+	t_elem *frst;
 
-
-	if (!sort->a || !sort->a->n)
-		return ;
-	temp = sort->a->n->i;
-	sort->a->n->i = sort->a->i;
-	sort->a->i = temp;
+	if (sort->a && sort->a->n)
+	{
+		frst = sort->a;
+		sort->a = sort->a->n;
+		frst->n = sort->a->n;
+		sort->a->n = frst;
+	}
 	write(1, "sa\n", 3);
+	visual(sort);
 }
 
 void	swap_b(t_sort *sort)
 {
-	int temp;
+	t_elem *frst;
 
-	if (!sort->b || !sort->b->n)
-		return ;
-	temp = sort->b->n->i;
-	sort->b->n->i = sort->b->i;
-	sort->b->i = temp;
+	if (sort->b && sort->b->n)
+	{
+		frst = sort->b;
+		sort->b = sort->b->n;
+		frst->n = sort->b->n;
+		sort->b->n = frst;
+	}
 	write(1, "sb\n", 3);
+	visual(sort);
 }
 
 void	swap_s(t_sort *sort)
 {
-	int temp;
-
+	t_elem *frst;
+	
+	if (sort->b && sort->b->n)
+	{
+		frst = sort->b;
+		sort->b = sort->b->n;
+		frst->n = sort->b->n;
+		sort->b->n = frst;
+	}
 	if (sort->a && sort->a->n)
 	{
-		temp = sort->a->n->i;
-		sort->a->n->i = sort->a->i;
-		sort->a->i = temp;
+		frst = sort->a;
+		sort->a = sort->a->n;
+		frst->n = sort->a->n;
+		sort->a->n = frst;
 	}
-	if (sort->b && sort->a->n)
-	{
-		temp = sort->b->n->i;
-		sort->b->n->i = sort->b->i;
-		sort->b->i = temp;
-	}
-	temp = sort->b->n->i;
-	sort->b->n->i = sort->b->i;
-	sort->b->i = temp;
 	write(1, "ss\n", 3);
+	visual(sort);
 }
 
 // pa: push a - take first element at the top of b and put it at the top of a.
@@ -78,6 +83,11 @@ void	push_a(t_sort *sort)
 {
 	t_elem *ptr;
 
+	if (sort->b)
+	{
+		sort->cb--;
+		sort->ca++;
+	}
 	if (sort->b && !sort->a) // if a is not
 	{
 		sort->a = sort->b;
@@ -92,12 +102,18 @@ void	push_a(t_sort *sort)
 		sort->a->n = ptr;
 	}
 	write(1, "pa\n", 3);
+	visual(sort);
 }
 
 void	push_b(t_sort *sort)
 {
 	t_elem *ptr;
 
+	if (sort->a)
+	{
+		sort->cb++;
+		sort->ca--;
+	}
 	if (sort->a && !sort->b) // if b is not
 	{
 		sort->b = sort->a;
@@ -112,6 +128,7 @@ void	push_b(t_sort *sort)
 		sort->b->n = ptr;
 	}
 	write(1, "pb\n", 3);
+	visual(sort);
 }
 
 // ra : rotate a - shift up all elements of stack a by 1.
@@ -121,20 +138,69 @@ void	push_b(t_sort *sort)
 
 void	rota_a(t_sort *sort)
 {
-	sort->b = NULL;
+	t_elem *frst;
+	t_elem *last;
+
+	if (sort->a && sort->a->n)
+	{
+		frst = sort->a;
+		sort->a = sort->a->n;
+		last = sort->a->n;
+		while (last->n)
+			last = last->n;
+		last->n = frst;
+		frst->n = NULL;
+	}
 	write(1, "ra\n", 3);
+	visual(sort);
 }
 
 void	rota_b(t_sort *sort)
 {
-	sort->b = NULL;
+	t_elem *frst;
+	t_elem *last;
+
+	if (sort->b && sort->b->n)
+	{
+		frst = sort->b;
+		sort->b = sort->b->n;
+		last = sort->b->n;
+		while (last->n)
+			last = last->n;
+		last->n = frst;
+		frst->n = NULL;
+	}
 	write(1, "rb\n", 3);
+	visual(sort);
 }
 
 void	rota_r(t_sort *sort)
 {
-	sort->b = NULL;
+	t_elem *frst;
+	t_elem *last;
+
+	if (sort->a && sort->a->n)
+	{
+		frst = sort->a;
+		frst->n = NULL;
+		sort->a = sort->a->n;
+		last = sort->a->n;
+		while (last->n)
+			last = last->n;
+		last->n = frst;
+	}
+	if (sort->b && sort->b->n)
+	{
+		frst = sort->b;
+		frst->n = NULL;
+		sort->b = sort->b->n;
+		last = sort->b->n;
+		while (last->n)
+			last = last->n;
+		last->n = frst;
+	}
 	write(1, "rr\n", 3);
+	visual(sort);
 }
 
 // rra : reverse rotate a - shift down all elements of stack a by 1.
@@ -158,6 +224,7 @@ void	rrta_a(t_sort *sort)
 		sort->a = last;
 	}
 	write(1, "rra\n", 4);
+	visual(sort);
 }
 
 void	rrta_b(t_sort *sort)
@@ -176,6 +243,7 @@ void	rrta_b(t_sort *sort)
 		sort->b = last;
 	}
 	write(1, "rrb\n", 4);
+	visual(sort);
 }
 
 void	rrta_r(t_sort *sort)
@@ -204,4 +272,5 @@ void	rrta_r(t_sort *sort)
 		sort->a = last;
 	}
 	write(1, "rrr\n", 4);
+	visual(sort);
 }

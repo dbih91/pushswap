@@ -1,13 +1,13 @@
 #!/bin/bash
 make
 ((C=0))
-((N=10))
+((N=5))
 while [ $C -ne $N ]
 do
 	ARR[$C]=$(($C))
 	((C++))
 done
-((P=3))
+((P=5))
 while [ $P -ne 0 ]
 do
 ((C=0))
@@ -24,6 +24,9 @@ done
 ALL="${ARR[*]}"
 echo ${ARR[*]}
 ./push_swap $ALL
+./push_swap $ALL | wc -l
+./push_swap $ALL | ./checker_Mac $ALL
+./push_swap $ALL | ./checker_linux $ALL
 make fclean
 
 #while [ $C -ne $N ]

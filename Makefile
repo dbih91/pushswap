@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/05/22 18:05:18  /  2021/05/22 18:05:33 @cclarice    #
+#    Created/Updated: 2021/05/26 19:53:20  /  2021/05/26 20:04:41 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ TSTN = test_xtox
 
 # SRCS
 SRCF = src
-SRC  = main.c ft_strlen.c ft_atoi.c ft_putint.c game_rules.c
+SRC  = main.c ft_strlen.c ft_atoi.c ft_putint.c game_rules.c 2bsort.c visual.c
 SRCS = $(addprefix $(SRCF)/, $(SRC))
 
 # OBJS
