@@ -12,12 +12,13 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/05/16 15:03:41  /  2021/05/17 23:49:20 @cclarice    #
+#    Created/Updated: 2021/05/22 18:05:18  /  2021/05/22 18:05:33 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
 # HEAD & NAME
 NAME = push_swap
+NVIS = push_show
 HEAD = src/pushswap.h
 
 # TEST
@@ -41,20 +42,25 @@ RM   = rm -rf
 CC   = clang
 
 # Compile Rule
-all: $(OBJF) $(NAME) done
+all: $(OBJF) $(NAME)
 
 $(OBJF):
 	@$(MKDR) $(OBJF)
 
-obj/%.o: src/%.c $(OBJF) $(HEAD)
+obj/%.o: src/%.c $(HEAD)
 	@$(CC) $(FLAG) -c $< -o $@
 	@$(SAY) "Compilng \033[33m$< \033[0mto \033[36m$@\033[0m"
 
 $(NAME): $(OBJS)
 	@$(CC) $(FLAG) $(OBJS) -o $(NAME)
 	@$(SAY) "Compilng \033[35m$(NAME)\033[0m"
+	@$(SAY) "Makefile \033[32mDone!\033[0m"
 
-done:
+# Compile Visual
+
+$(NVIS): $(OBJS)
+	@$(CC) $(FLAG) -D VISUAL=1 $(OBJS) -o $(NVIS)
+	@$(SAY) "Compilng \033[35m$(NVIS)\033[0m"
 	@$(SAY) "Makefile \033[32mDone!\033[0m"
 
 # Clean and recompile rules
@@ -63,7 +69,9 @@ clean:
 	@$(SAY) "Removing \033[31m$(OBJF)\033[0m"
 
 fclean: clean
-	@$(RM) $(NAME)
-	@$(SAY) "Removing \033[31m$(NAME)\033[0m"
+	@if [ -a "${NAME}" ]; then $(RM) $(NAME); \
+	$(SAY) "Removing \033[31m$(NAME)\033[0m"; fi
+	@if [ -a "${NVIS}" ]; then $(RM) $(NVIS); \
+	$(SAY) "Removing \033[31m$(NVIS)\033[0m"; fi
 
 re: fclean all

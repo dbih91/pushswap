@@ -12,12 +12,11 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/17 23:07:43  /  2021/05/17 23:49:40 @cclarice   */
+/*   Created/Updated: 2021/05/23 21:46:28  /  2021/05/23 21:46:29 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-#include <stdio.h>
 
 void exit_error(void)
 {
@@ -78,7 +77,7 @@ void	valid(int c, char *v[], int **i)
 		if (not_integer(v[p]))
 			exit_error();
 		i[0][p - 1] = ft_atoi(v[p]);
-		printf("ATOI: %d\n", i[0][p - 1]);
+		//printf("ATOI: %d\n", i[0][p - 1]);
 		p++;
 	}
 	if (has_duplicate(i[0], c - 1))
@@ -106,7 +105,7 @@ t_elem	*create_list(int *i, int c)
 	ip = 0;
 	ret = ft_newelem(i[ip++]);
 	ptr = ret;
-	while (ip <= c)
+	while (ip < c)
 	{
 		ptr->n = ft_newelem(i[ip++]);
 		ptr = ptr->n;
@@ -120,25 +119,53 @@ void	writesort(t_sort sort)
 	t_elem *ptr;
 
 	ptr = sort.a;
-	printf("A[");
-	while (ptr && ptr->n)
+	printf("\n\n\n\033[1;32mA[");
+	while (ptr)
 	{
 		printf("%d", ptr->i);
-		if (ptr->n->n)
+		if (ptr->n)
 			printf(", ");
 		ptr = ptr->n;
 	}
-	printf("]\n");
+	printf("]\033[0m\n");
 	ptr = sort.b;
-	printf("B[");
-	while (ptr && ptr->n)
+	printf("\033[1;92mB[");
+	while (ptr)
 	{
 		printf("%d", ptr->i);
-		if (ptr->n->n)
+		if (ptr->n)
 			printf(", ");
 		ptr = ptr->n;
 	}
-	printf("]\n");
+	printf("]\033[0m\n");
+}
+
+void	v(t_sort *sort)
+{
+	if (VISUAL)
+		writesort(*sort);
+}
+
+void	sort_list(t_sort *sort)
+{
+	rrta_a(sort);
+	push_b(sort);
+	rrta_a(sort);
+	push_b(sort);
+	push_b(sort);
+	swap_a(sort);
+	push_a(sort);
+	swap_a(sort);
+	push_b(sort);
+	rrta_a(sort);
+	push_b(sort);
+	push_b(sort);
+	swap_a(sort);
+	push_a(sort);
+	push_a(sort);
+	push_a(sort);
+	push_a(sort);
+	push_a(sort);
 }
 
 int	main(int c, char *v[])
@@ -151,7 +178,7 @@ int	main(int c, char *v[])
 	if (c >= 3)
 	{
 		sort.a = create_list(i, c - 1);
-		//sort_list()
+		sort_list(&sort);
 	}
 	return (0);
 }

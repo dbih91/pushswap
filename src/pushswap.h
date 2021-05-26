@@ -22,10 +22,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+#include <stdio.h>
+#include <time.h>
+
 // includes:
 //     unistd: read() write()
 //     stdlib: malloc() free()
-//     exit()         
+//     exit()
 
 typedef struct s_elem
 {
@@ -39,8 +42,20 @@ typedef struct s_sort
 	t_elem *b;
 }				t_sort;
 
+// utils
+
 unsigned int			ft_strlen(const char *str);
 int						ft_atoi(const char *str);
 void					ft_putint(int i);
+
+// game rules
+
+void	swap_a(t_sort *sort);
+void	swap_b(t_sort *sort);
+void	swap_s(t_sort *sort);
+void	push_a(t_sort *sort);
+void	push_b(t_sort *sort);
+void	rrta_a(t_sort *sort);
+void	rrta_b(t_sort *sort);
 
 #endif

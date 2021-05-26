@@ -1,7 +1,7 @@
 #!/bin/bash
 make
 ((C=0))
-((N=32))
+((N=10))
 while [ $C -ne $N ]
 do
 	ARR[$C]=$(($C))
