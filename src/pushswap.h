@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/26 22:49:16  /  2021/05/26 23:06:33 @cclarice   */
+/*   Created/Updated: 2021/05/28 13:00:07  /  2021/05/28 13:11:01 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ typedef struct s_sort
 {
 	t_elem			*a;
 	t_elem			*b;
-	unsigned int	cc;
-	unsigned int	ca;
-	unsigned int	cb;
+	unsigned int	l;
+	unsigned int	la;
+	unsigned int	lb;
 	int				sf;
 	int				ss;
 	int				fr;

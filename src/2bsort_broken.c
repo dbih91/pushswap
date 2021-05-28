@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   2bsort.c                                 cclarice@student.21-school.ru   */
+/*   2bsort_broken.c                          cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/27 00:35:19  /  2021/05/27 00:35:32 @cclarice   */
+/*   Created/Updated: 2021/05/28 12:42:26  /  2021/05/28 12:42:27 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ unsigned int		get_len(t_sort *sort)
 
 	i = 0;
 	ptr = sort->a;
-	while (ptr->i != sort->sf && ptr->i != sort->ss)
+	while (ptr->i != sort->sf && (ptr->i != sort->ss || sort->swap))
 	{
 		i++;
 		ptr = ptr->n;
@@ -99,7 +99,7 @@ void	self_sort(t_sort *sort)
 	{
 		ptr = sort->a;
 		get_sf_ss(sort);
-		while (sort->a->i != sort->sf && sort->a->i != sort->ss)
+		while (sort->a->i != sort->sf && (ptr->i != sort->ss || sort->swap))
 		{
 			if (get_len(sort) >= sort->ca / 2)
 				rrta_a(sort);
