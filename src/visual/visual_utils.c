@@ -10,17 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   1sw_sort.c                               cclarice@student.21-school.ru   */
+/*   visual_utils.c                           cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/28 14:07:43  /  2021/05/28 14:07:47 @cclarice   */
-/*                                                                            */
-/* ************************************************************************** */
-/*                                                                            */
-/*   One stack swap sort                                                      */
-/*                                                                            */
-/*   Using only stack a for sorting                                           */
+/*   Created/Updated: 2021/05/28 17:33:30  /  2021/05/28 17:33:43 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
-
+#include "../pushswap.h"

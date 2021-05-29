@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/28 13:00:07  /  2021/05/28 13:11:01 @cclarice   */
+/*   Created/Updated: 2021/05/28 17:31:33  /  2021/05/28 17:31:40 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,16 @@
 //     stdlib: malloc() free()
 //     exit()
 
+//	Struct Element
+//	
+//	d - (Digit) integer
+//	i - (Index) index of number
+//	n - (Next) next element
+
 typedef struct s_elem
 {
-	int					i;
+	int					d;
+	unsigned int		i;
 	struct s_elem		*n;
 }				t_elem;
 
@@ -40,13 +47,21 @@ typedef struct s_elem
 //
 //	*a - start of a stack
 //	*b - start of b stack
-//	cc - count all
-//	ca - count a
-//	cb - count b
-//	sf - smallest first
-//	ss - smallest second
-//	fr - sf rotate  if +1 is rota_a
-//	sr - ss rotate  if -1 is rrta_a
+//	l  - len all
+//	la - len a
+//	lb - len b
+//	sa - smallest index of a
+//	sb - smallest index of b
+//	ba - biggest index of a
+//	bb - biggest index of b
+//	op - Operations of 
+//	vi - Visual:  1 - just return amount of opertaions.
+//                2 - put only output.
+//	              0 - just return amount of opertaions for next advanced visual.
+//	             -1 - put advanced output for p2b_sort method
+//	             -2 - put advanced output for 1sw_sort method
+//	             -3 - put advanced output for 2sw_sort method
+//	             -4 - put advanced output for best algoritm.
 
 typedef struct s_sort
 {
@@ -59,18 +74,23 @@ typedef struct s_sort
 	int				ss;
 	int				fr;
 	int				sr;
+	unsigned int	op[3];
+	int				vi;
 }				t_sort;
 
-// utils
+// Utils
 
 unsigned int			ft_strlen(const char *str);
 int						ft_atoi(const char *str);
 void					ft_putint(int i);
 void					visual(t_sort *sort);
+void					init_sort(t_sort *sort);
 
-// sort
+// Sorting Algoritms
 
-void	init_sort(t_sort *sort);
+void	sw1_sort(t_sort *sort);
+void	sw2_sort(t_sort *sort);
+void	p2b_sort(t_sort *sort);
 
 // game rules
 

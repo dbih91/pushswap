@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/27 11:43:25  /  2021/05/27 11:50:28 @cclarice   */
+/*   Created/Updated: 2021/05/28 16:54:26  /  2021/05/28 16:55:16 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_elem	*ft_newelem(int nbr)
 	if (!ptr)
 		exit_error();
 	ptr->n = NULL;
-	ptr->i = nbr;
+	ptr->d = nbr;
 	return (ptr);
 }
 
@@ -114,6 +114,16 @@ t_elem	*create_list(int *i, int c)
 	return (ret);
 }
 
+void	index_sort(t_sort *sort)
+{
+	unsigned int index;
+	t_elem *ptr;
+
+	index = 0;
+	ptr = sort->a;
+	while ()
+}
+
 int	main(int c, char *v[])
 {
 	int		*i;
@@ -124,6 +134,7 @@ int	main(int c, char *v[])
 	if (c >= 3)
 	{
 		sort.a = create_list(i, c - 1);
+		index_sort(&sort);
 		init_sort(&sort);
 	}
 	return (0);

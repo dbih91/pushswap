@@ -12,13 +12,12 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/05/26 19:53:20  /  2021/05/26 20:04:41 @cclarice    #
+#    Created/Updated: 2021/05/28 18:51:33  /  2021/05/28 18:52:17 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
 # HEAD & NAME
 NAME = push_swap
-NVIS = push_show
 HEAD = src/pushswap.h
 
 # TEST
@@ -27,7 +26,9 @@ TSTN = test_xtox
 
 # SRCS
 SRCF = src
-SRC  = main.c ft_strlen.c ft_atoi.c ft_putint.c game_rules.c 2bsort.c visual.c
+SRC  = main.c ft_strlen.c ft_atoi.c ft_putint.c game_rules.c visual.c p2b_sort.c
+#SRC  = main.c ft_strlen.c ft_atoi.c ft_putint.c game_rules.c visual.c 2sw_sort.c
+#SRC  = main.c ft_strlen.c ft_atoi.c ft_putint.c game_rules.c visual.c 1sw_sort.c
 SRCS = $(addprefix $(SRCF)/, $(SRC))
 
 # OBJS
@@ -54,13 +55,6 @@ obj/%.o: src/%.c $(HEAD)
 $(NAME): $(OBJS)
 	@$(CC) $(FLAG) $(OBJS) -o $(NAME)
 	@$(SAY) "Compilng \033[35m$(NAME)\033[0m"
-	@$(SAY) "Makefile \033[32mDone!\033[0m"
-
-# Compile Visual
-
-$(NVIS): $(OBJS)
-	@$(CC) $(FLAG) -D VISUAL=1 $(OBJS) -o $(NVIS)
-	@$(SAY) "Compilng \033[35m$(NVIS)\033[0m"
 	@$(SAY) "Makefile \033[32mDone!\033[0m"
 
 # Clean and recompile rules

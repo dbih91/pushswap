@@ -10,50 +10,66 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   visual.c                                 cclarice@student.21-school.ru   */
+/*   push.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/27 00:26:12  /  2021/05/27 00:26:31 @cclarice   */
+/*   Created/Updated: 2021/05/28 18:21:24  /  2021/05/28 18:21:26 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
-#define VISUAL 1
-#define TIME 0
+// pa: push a - take first element at the top of b and put it at the top of a.
+// pb: push b - take first element at the top of a and put it at the top of b.
+//                                               (Do nothing if b or a is empty)
 
-void	writesort(t_sort sort)
+void	push_a(t_sort *sort)
 {
 	t_elem *ptr;
-	static int it = 0;
 
-	it++;
-	ptr = sort.a;
-	printf("| cc %4d | ca %4d | cb %4d | it %4d | sf %4d | ss %4d |", sort.cc, sort.ca, sort.cb, it, sort.sf, sort.ss);
-	printf("\n\033[1;32mA[");
-	while (ptr)
+	if (sort->b)
 	{
-		printf("%d", ptr->i);
-		if (ptr->n)
-			printf(", ");
-		ptr = ptr->n;
+		sort->cb--;
+		sort->ca++;
 	}
-	printf("]\033[0m\n");
-	ptr = sort.b;
-	printf("\033[1;92mB[");
-	while (ptr)
+	if (sort->b && !sort->a) // if a is not
 	{
-		printf("%d", ptr->i);
-		if (ptr->n)
-			printf(", ");
-		ptr = ptr->n;
+		sort->a = sort->b;
+		sort->b = sort->b->n;
+		sort->a->n = NULL;
 	}
-	printf("]\033[0m\n+--------=+=-------=+=--------+\n");
+	else if (sort->b)
+	{
+		ptr = sort->a;
+		sort->a = sort->b;
+		sort->b = sort->b->n;
+		sort->a->n = ptr;
+	}
+	write(1, "pa\n", 3);
+	visual(sort);
 }
 
-void	visual(t_sort *sort)
+void	push_b(t_sort *sort)
 {
-	if (TIME)
-		usleep(TIME);
-	if (VISUAL)
-		writesort(*sort);
+	t_elem *ptr;
+
+	if (sort->a)
+	{
+		sort->cb++;
+		sort->ca--;
+	}
+	if (sort->a && !sort->b) // if b is not
+	{
+		sort->b = sort->a;
+		sort->a = sort->a->n;
+		sort->b->n = NULL;
+	}
+	else if (sort->a)
+	{
+		ptr = sort->b;
+		sort->b = sort->a;
+		sort->a = sort->a->n;
+		sort->b->n = ptr;
+	}
+	write(1, "pb\n", 3);
+	visual(sort);
 }
