@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 20:22:00  /  2021/05/31 20:22:04 @cclarice   */
+/*   Created/Updated: 2021/05/31 23:47:21  /  2021/05/31 23:55:34 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,23 @@ void	clear_sort(t_sort *sort)
 
 void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 {
-	if (sort->vi >= 0)
-	sort->a = create_list(d, i, c);
-	clear_sort(sort);
+	if (sort->vi == 0)
+	{
+		sort->a = create_list(d, i, c);
+		clear_sort(sort);
+	}
+	else if (sort->vi < 0)
+	{
+		visual(sort, "+-\nhi")
+		if (sort->vi == -1)
+			p2b_sort(sort);
+		else if (sort->vi == -2)
+			sw1_sort(sort);
+		else if (sort->vi == -3)
+			sw2_sort(sort);
+		else
+			write(1, "Visual Error!\n", 14);
+	}
 }
 
 int	main(int c, char *v[])
