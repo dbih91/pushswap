@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/29 19:13:45  /  2021/05/31 18:04:17 @cclarice   */
+/*   Created/Updated: 2021/05/31 19:51:03  /  2021/05/31 19:51:18 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,15 @@ typedef struct s_sort
 
 // Utils
 
-unsigned int			ft_strlen(const char *str);
-int						ft_atoi(const char *str);
-void					ft_putint(int i);
-void					visual(t_sort *sort);
-void					init_sort(t_sort *sort);
+void			exit_error(void);
+
+void			convert_and_index(int c, char *v[], int **d, unsigned int **i);
+
+unsigned int	ft_strlen(const char *str);
+int				ft_atoi(const char *str);
+void			ft_putint(int i);
+void			visual(t_sort *sort);
+void			init_sort(t_sort *sort);
 
 // Sorting Algoritms
 
