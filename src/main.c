@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 19:52:53  /  2021/05/31 19:52:55 @cclarice   */
+/*   Created/Updated: 2021/05/31 20:04:29  /  2021/05/31 20:04:29 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,31 @@ t_elem	*create_list(int *d, unsigned int *i, int c)
 	return (ret);
 }
 
+void	clear_sort(t_sort *sort)
+{
+	t_elem *ptr;
+	t_elem *nxt;
+
+	ptr = sort->a;
+	while (ptr)
+	{
+		nxt = ptr->n;
+		free(ptr);
+		ptr = nxt;
+	}
+	ptr = sort->b;
+	while (ptr)
+	{
+		nxt = ptr->n;
+		free(ptr);
+		ptr = nxt;
+	}
+}
+
 void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 {
-	sort->a = create_list(d, i, c - 1);
+	sort->a = create_list(d, i, c);
+	clear_sort(sort);
 }
 
 int	main(int c, char *v[])

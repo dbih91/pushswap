@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   push.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/29 19:35:24  /  2021/05/31 17:37:53 @cclarice   */
+/*   Created/Updated: 2021/05/31 20:08:00  /  2021/05/31 20:08:12 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	push_a(t_sort *sort)
 		sort->b = sort->b->n;
 		sort->a->n = ptr;
 	}
-	write(1, "pa\n", 3);
-	visual(sort);
+	visual(sort, "pa\n");
 }
 
 void	push_b(t_sort *sort)
@@ -70,6 +69,5 @@ void	push_b(t_sort *sort)
 		sort->a = sort->a->n;
 		sort->b->n = ptr;
 	}
-	write(1, "pb\n", 3);
-	visual(sort);
+	visual(sort, "pb\n");
 }

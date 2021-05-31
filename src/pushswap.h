@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 19:51:03  /  2021/05/31 19:51:18 @cclarice   */
+/*   Created/Updated: 2021/05/31 19:58:07  /  2021/05/31 19:58:21 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,11 @@ typedef struct s_elem
 //	ba - biggest index of a
 //	bb - biggest index of b
 //	op - Operations of 
-//	vi - Visual:  1 - just return amount of opertaions.
-//                2 - put only output.
-//	              0 - just return amount of opertaions for next advanced visual.
+//	vi - Visual:  0 - just return amount of opertaions.
+//                1 - put output.
 //	             -1 - put advanced output for p2b_sort method
 //	             -2 - put advanced output for 1sw_sort method
 //	             -3 - put advanced output for 2sw_sort method
-//	             -4 - put advanced output for best algoritm.
 
 typedef struct s_sort
 {

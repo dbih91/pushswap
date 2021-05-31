@@ -12,13 +12,12 @@
 /*                                                                            */
 /*   visual.c                                 cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 17:59:09  /  2021/05/31 17:59:43 @cclarice   */
+/*   Created/Updated: 2021/05/31 20:06:40  /  2021/05/31 20:06:40 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-#define VISUAL 1
 #define TIME 1
 
 void	writesort(t_sort sort)
