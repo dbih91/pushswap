@@ -1,22 +1,15 @@
 #!/bin/bash
-ALL="9 2 3 5 7 1 6 0 4 8"
-make
-if      [[ $1 == "-v1" ]]
-then
-./push
-else if [[ $1 == "-v2" ]]
-then
-echo Dwa
-else if [[ $1 == "-v3" ]]
-then
-echo Tri
-else if [ 1 == 1 ]
-then
+
+# RANDOM GENERATOR #
 ((C=0))
 ((N=10))
 while [ $C -ne $N ]
 do
 	ARR[$C]=$(($C))
+	if [ 1 -ne 0 ]; then
+	if [ $(($RANDOM%2)) -ne 0 ]; then
+	ARR[$C]=$(($C * -1))
+	fi fi
 	((C++))
 done
 ((P=5))
@@ -33,15 +26,31 @@ do
 done
 ((P--))
 done
+# RANDOM GENERATOR #
+
+ALL="9 2 3 5 7 1 6 0 4 8"
+
 ALL="${ARR[*]}"
-fi fi fi fi
+
+make
+if      [[ $1 == "-v1" ]]
+then
+./push_swap $1 $ALL
+else if [[ $1 == "-v2" ]]
+then
+./push_swap $1 $ALL
+else if [[ $1 == "-v3" ]]
+then
+./push_swap $1 $ALL
+else if [ 1 == 1 ]
+then
 
 #Check OS fedora or MacOS
-OS=$(cat /etc/os-release | grep ID=fedora)
-if [[ $OS == "ID=fedora" ]]
+OS=$(ls /etc | grep os-release)
+if [[ $OS == "os-release" ]]
 then
 	./push_swap $ALL | ./checker_linux $ALL
 else if [ 1 == 1 ]
 then
-	echo $(./push_swap $ALL | ./checker_Mac $ALL)
-fi fi
+	./push_swap $ALL | ./checker_Mac $ALL
+fi fi fi fi fi fi

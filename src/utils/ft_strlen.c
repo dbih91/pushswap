@@ -12,11 +12,11 @@
 /*                                                                            */
 /*   ft_strlen.c                              cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/14 04:26:51  /  2021/05/14 04:26:56 @cclarice   */
+/*   Created/Updated: 2021/05/29 19:13:45  /  2021/05/31 17:58:27 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 unsigned int	ft_strlen(const char *str)
 {

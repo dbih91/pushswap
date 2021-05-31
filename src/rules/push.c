@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   push.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/28 18:21:24  /  2021/05/28 18:21:26 @cclarice   */
+/*   Created/Updated: 2021/05/29 19:35:24  /  2021/05/31 17:37:53 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	push_a(t_sort *sort)
 
 	if (sort->b)
 	{
-		sort->cb--;
-		sort->ca++;
+		sort->lb--;
+		sort->la++;
 	}
 	if (sort->b && !sort->a) // if a is not
 	{
@@ -54,8 +54,8 @@ void	push_b(t_sort *sort)
 
 	if (sort->a)
 	{
-		sort->cb++;
-		sort->ca--;
+		sort->lb++;
+		sort->la--;
 	}
 	if (sort->a && !sort->b) // if b is not
 	{

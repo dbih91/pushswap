@@ -12,11 +12,11 @@
 /*                                                                            */
 /*   ft_putint.c                              cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/14 04:26:40  /  2021/05/14 04:26:41 @cclarice   */
+/*   Created/Updated: 2021/05/31 17:58:27  /  2021/05/31 17:58:28 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 void	ft_putchar(const char c)
 {

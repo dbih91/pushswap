@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   p2b_sort.c                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/28 18:50:53  /  2021/05/28 18:52:20 @cclarice   */
+/*   Created/Updated: 2021/05/31 17:57:57  /  2021/05/31 17:57:58 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
@@ -26,5 +26,5 @@
 
 void	p2b_sort(t_sort *sort)
 {
-	sort->op = 0xffffffff;
+	sort->op[0] = 0xffffffff;
 }

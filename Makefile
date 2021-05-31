@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/05/28 18:51:33  /  2021/05/28 18:52:17 @cclarice    #
+#    Created/Updated: 2021/05/31 17:57:37  /  2021/05/31 17:57:39 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,20 @@ TSTN = test_xtox
 
 # SRCS
 SRCF = src
-SRC  = main.c ft_strlen.c ft_atoi.c ft_putint.c game_rules.c visual.c p2b_sort.c
-#SRC  = main.c ft_strlen.c ft_atoi.c ft_putint.c game_rules.c visual.c 2sw_sort.c
-#SRC  = main.c ft_strlen.c ft_atoi.c ft_putint.c game_rules.c visual.c 1sw_sort.c
+SRC_RULES  = push.c reverse.c rotate.c swap.c
+SRC_SORT   = p2b_sort.c sw1_sort.c sw2_sort.c
+SRC_UTILS  = ft_atoi.c ft_putint.c ft_strlen.c
+SRC_VISUAL = visual.c visual_utils.c
+SRC  = $(addprefix rules/, $(SRC_RULES)) \
+       $(addprefix sort/, $(SRC_SORT)) \
+       $(addprefix utils/, $(SRC_UTILS)) \
+       $(addprefix visual/, $(SRC_VISUAL)) \
+       main.c
 SRCS = $(addprefix $(SRCF)/, $(SRC))
 
 # OBJS
 OBJF = obj
+OBJFS = $(addprefix $(OBJF)/, rules sort utils visual)
 OBJS = $(patsubst src/%.c, obj/%.o, $(SRCS))
 
 # COMPILE
@@ -46,7 +53,8 @@ CC   = clang
 all: $(OBJF) $(NAME)
 
 $(OBJF):
-	@$(MKDR) $(OBJF)
+	@if [ ! -a "${OBJF}" ]; then $(MKDR) $(OBJF); $(MKDR) $(OBJFS) ;\
+	$(SAY) "Created \033[33m$(OBJF) $(OBJFS)\033[0m"; fi
 
 obj/%.o: src/%.c $(HEAD)
 	@$(CC) $(FLAG) -c $< -o $@
@@ -59,13 +67,11 @@ $(NAME): $(OBJS)
 
 # Clean and recompile rules
 clean:
-	@$(RM) $(OBJF)
-	@$(SAY) "Removing \033[31m$(OBJF)\033[0m"
+	@if [ -a "${OBJF}" ]; then $(RM) $(OBJF); \
+	$(SAY) "Removing \033[31m$(OBJF)\033[0m"; fi
 
 fclean: clean
 	@if [ -a "${NAME}" ]; then $(RM) $(NAME); \
 	$(SAY) "Removing \033[31m$(NAME)\033[0m"; fi
-	@if [ -a "${NVIS}" ]; then $(RM) $(NVIS); \
-	$(SAY) "Removing \033[31m$(NVIS)\033[0m"; fi
 
 re: fclean all

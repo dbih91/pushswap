@@ -12,11 +12,11 @@
 /*                                                                            */
 /*   ft_atoi.c                                cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/17 22:38:46  /  2021/05/17 22:39:02 @cclarice   */
+/*   Created/Updated: 2021/05/29 19:13:45  /  2021/05/31 17:58:20 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 int	ft_atoi(const char *str)
 {

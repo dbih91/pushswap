@@ -12,11 +12,14 @@
 /*                                                                            */
 /*   visual.c                                 cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/28 17:32:15  /  2021/05/28 17:32:21 @cclarice   */
+/*   Created/Updated: 2021/05/31 17:59:09  /  2021/05/31 17:59:43 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
+
+#define VISUAL 1
+#define TIME 1
 
 void	writesort(t_sort sort)
 {
@@ -25,7 +28,7 @@ void	writesort(t_sort sort)
 
 	it++;
 	ptr = sort.a;
-	printf("| cc %4d | ca %4d | cb %4d | it %4d | sf %4d | ss %4d |", sort.cc, sort.ca, sort.cb, it, sort.sf, sort.ss);
+	//printf("| cc %4d | ca %4d | cb %4d | it %4d | sf %4d | ss %4d |", sort.cc, sort.ca, sort.cb, it, sort.sf, sort.ss);
 	printf("\n\033[1;32mA[");
 	while (ptr)
 	{

@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   sw1_sort.c                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/28 18:43:39  /  2021/05/28 18:52:24 @cclarice   */
+/*   Created/Updated: 2021/05/29 19:13:45  /  2021/05/31 17:58:05 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
@@ -26,5 +26,5 @@
 
 void	sw1_sort(t_sort *sort)
 {
-	sort->op = 0xffffffff;
+	sort->op[1] = 0xffffffff;
 }
