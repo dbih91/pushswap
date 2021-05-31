@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 19:58:07  /  2021/05/31 19:58:21 @cclarice   */
+/*   Created/Updated: 2021/05/31 19:58:21  /  2021/05/31 20:13:39 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void			convert_and_index(int c, char *v[], int **d, unsigned int **i);
 unsigned int	ft_strlen(const char *str);
 int				ft_atoi(const char *str);
 void			ft_putint(int i);
-void			visual(t_sort *sort);
+void			visual(t_sort *sort, char *str);
 void			init_sort(t_sort *sort);
 
 // Sorting Algoritms

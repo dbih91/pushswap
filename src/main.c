@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 20:04:29  /  2021/05/31 20:04:29 @cclarice   */
+/*   Created/Updated: 2021/05/31 20:22:00  /  2021/05/31 20:22:04 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	clear_sort(t_sort *sort)
 
 void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 {
+	if (sort->vi >= 0)
 	sort->a = create_list(d, i, c);
 	clear_sort(sort);
 }
@@ -90,13 +91,19 @@ int	main(int c, char *v[])
 	unsigned int		*i;
 	int					*d;
 
+	sort.a = NULL;
 	sort.b = NULL;
 	(v++ && c--);
+	if (v[0] && v[0][0] && v[0][1] &&
+		v[0][0] == '-' && v[0][1] == 'v' && v[0][2] >= '1' && v[0][2] <= '9')
+	{
+		sort.vi = (v[0][2] - '0') * -1;
+		(v++ && c--);
+	}
+	else
+		sort.vi = 0;
 	if (c <= 1)
 		return (0);
-	if (v[0][0] && v[0][1] &&
-		v[0][0] == '-' && v[0][1] == 'v' && v[0][2] >= '0' && v[0][2] <= '9')
-		(v++ && c--);
 	convert_and_index(c, v, &d, &i);
 	sorting(&sort, d, i, c);
 	return (0);

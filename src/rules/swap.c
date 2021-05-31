@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   swap.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/28 18:22:32  /  2021/05/28 18:24:32 @cclarice   */
+/*   Created/Updated: 2021/05/31 20:15:43  /  2021/05/31 20:15:44 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void	swap_a(t_sort *sort)
 		frst->n = sort->a->n;
 		sort->a->n = frst;
 	}
-	write(1, "sa\n", 3);
-	visual(sort);
+	visual(sort, "sa\n");
 }
 
 void	swap_b(t_sort *sort)
@@ -49,8 +48,7 @@ void	swap_b(t_sort *sort)
 		frst->n = sort->b->n;
 		sort->b->n = frst;
 	}
-	write(1, "sb\n", 3);
-	visual(sort);
+	visual(sort, "sb\n");
 }
 
 void	swap_s(t_sort *sort)
@@ -71,6 +69,5 @@ void	swap_s(t_sort *sort)
 		frst->n = sort->a->n;
 		sort->a->n = frst;
 	}
-	write(1, "ss\n", 3);
-	visual(sort);
+	visual(sort, "ss\n");
 }

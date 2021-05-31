@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   rotate.c                                 cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/28 18:24:29  /  2021/05/28 18:24:35 @cclarice   */
+/*   Created/Updated: 2021/05/31 20:16:03  /  2021/05/31 20:16:08 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void	rota_a(t_sort *sort)
 		last->n = frst;
 		frst->n = NULL;
 	}
-	write(1, "ra\n", 3);
-	visual(sort);
+	visual(sort, "ra\n");
 }
 
 void	rota_b(t_sort *sort)
@@ -57,8 +56,7 @@ void	rota_b(t_sort *sort)
 		last->n = frst;
 		frst->n = NULL;
 	}
-	write(1, "rb\n", 3);
-	visual(sort);
+	visual(sort, "rb\n");
 }
 
 void	rota_r(t_sort *sort)
@@ -86,6 +84,5 @@ void	rota_r(t_sort *sort)
 			last = last->n;
 		last->n = frst;
 	}
-	write(1, "rr\n", 3);
-	visual(sort);
+	visual(sort, "rr\n");
 }

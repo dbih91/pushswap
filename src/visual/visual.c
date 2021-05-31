@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   visual.c                                 cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 20:06:40  /  2021/05/31 20:06:40 @cclarice   */
+/*   Created/Updated: 2021/05/31 20:14:53  /  2021/05/31 20:15:25 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,14 @@ void	writesort(t_sort sort)
 	printf("]\033[0m\n+--------=+=-------=+=--------+\n");
 }
 
-void	visual(t_sort *sort)
+void	visual(t_sort *sort, char *str)
 {
 	if (TIME)
 		usleep(TIME);
-	if (VISUAL)
-		writesort(*sort);
+	if (sort->vi != 1 && sort->vi != 0)
+	{
+
+	}
+	else if (sort->vi == 0)
+		write(1, &str, ft_strlen(str));
 }

@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   reverse.c                                cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/28 18:24:39  /  2021/05/28 18:42:05 @cclarice   */
+/*   Created/Updated: 2021/05/31 20:12:13  /  2021/05/31 20:12:27 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void	rrta_a(t_sort *sort)
 		prel->n = NULL;
 		sort->a = last;
 	}
-	write(1, "rra\n", 4);
-	visual(sort);
+	visual(sort, "rra\n");
 }
 
 void	rrta_b(t_sort *sort)
@@ -57,8 +56,7 @@ void	rrta_b(t_sort *sort)
 		prel->n = NULL;
 		sort->b = last;
 	}
-	write(1, "rrb\n", 4);
-	visual(sort);
+	visual(sort, "rrb\n");
 }
 
 void	rrta_r(t_sort *sort)
@@ -86,6 +84,5 @@ void	rrta_r(t_sort *sort)
 		prel->n = NULL;
 		sort->a = last;
 	}
-	write(1, "rrr\n", 4);
-	visual(sort);
+	visual(sort, "rrr\n");
 }
