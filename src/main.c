@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/01 20:27:25  /  2021/06/01 20:38:46 @cclarice   */
+/*   Created/Updated: 2021/06/01 23:47:56  /  2021/06/01 23:51:49 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_elem	*ft_newelem(int nbr, unsigned int index)
 	return (ptr);
 }
 
-t_elem	*create_list(int *d, unsigned int *i, int c)
+t_elem	*create_list(int *d, unsigned int *i, int c, unsigned int *l)
 {
 	t_elem	*ptr;
 	t_elem	*ret;
@@ -54,6 +54,7 @@ t_elem	*create_list(int *d, unsigned int *i, int c)
 		ptr = ptr->n;
 	}
 	ptr->n = NULL;
+	*l = ip;
 	return (ret);
 }
 
@@ -76,19 +77,32 @@ void	clear_sort(t_sort *sort)
 		free(ptr);
 		ptr = nxt;
 	}
+	sort->a = NULL;
+	sort->b = NULL;
+}
+
+void	create_sort(t_sort *sort, int *d, unsigned int *i, int c)
+{
+	clear_sort(sort);
+	sort->a = create_list(d, i, c, &sort->l);
+	sort->la = sort->l;
+	sort->lb = 0;
+	sort->op[0] = 0;
+	sort->op[1] = 0;
+	sort->op[2] = 0;
 }
 
 void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 {
 	if (sort->vi == 0)
 	{
-		sort->a = create_list(d, i, c);
+		create_sort(sort, d, i, c);
 		clear_sort(sort);
 	}
 	else if (sort->vi < 0)
 	{
-		sort->a = create_list(d, i, c);
-		visual(sort, "hi");
+		create_sort(sort, d, i, c);
+		visual(sort, "hi\n");
 		if (sort->vi == -1)
 			p2b_sort(sort);
 		else if (sort->vi == -2)
@@ -97,6 +111,7 @@ void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 			sw2_sort(sort);
 		else
 			write(1, "Visual Error!\n", 14);
+		clear_sort(sort);
 	}
 }
 

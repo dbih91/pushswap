@@ -2,17 +2,19 @@
 
 # RANDOM GENERATOR #
 ((C=0))
-((N=10))
+((N=500))
+if [ $2 ]; then
+	((N=$2)); fi
 while [ $C -ne $N ]
 do
 	ARR[$C]=$(($C))
-	if [ 1 -ne 0 ]; then
+	if [ 1 -ne 1 ]; then
 	if [ $(($RANDOM%2)) -ne 0 ]; then
 	ARR[$C]=$(($C * -1))
 	fi fi
 	((C++))
 done
-((P=5))
+((P=3))
 while [ $P -ne 0 ]
 do
 ((C=0))

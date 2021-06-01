@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/01 20:16:26  /  2021/06/01 20:28:35 @cclarice   */
+/*   Created/Updated: 2021/06/01 23:17:28  /  2021/06/01 23:48:03 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_sort
 	int				sr;
 	unsigned int	op[3];
 	int				vi;
+	int				trash;
 }				t_sort;
 
 typedef struct s_visl
@@ -84,7 +85,7 @@ typedef struct s_visl
 	unsigned short	lw;
 	unsigned short	tw;
 	unsigned short	ctw;
-	unsigned short	per_color;
+	int				per_color;
 }				t_visl;
 
 // Utils
@@ -96,8 +97,10 @@ void			convert_and_index(int c, char *v[], int **d, unsigned int **i);
 unsigned int	ft_strlen(const char *str);
 int				ft_atoi(const char *str);
 void			ft_putint(int i);
-void			visual(t_sort *sort, const char *str);
 void			init_sort(t_sort *sort);
+
+void			put_digit(int d, int w, unsigned int i, int c);
+void			visual(t_sort *sort, const char *str);
 
 // Sorting Algoritms
 
