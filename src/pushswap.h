@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 19:58:21  /  2021/05/31 20:13:39 @cclarice   */
+/*   Created/Updated: 2021/06/01 20:16:26  /  2021/06/01 20:28:35 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 
 #include <stdio.h>
 #include <time.h>
+
+#define TW 280
 
 // includes:
 //     unistd: read() write()
@@ -76,6 +78,15 @@ typedef struct s_sort
 	int				vi;
 }				t_sort;
 
+typedef struct s_visl
+{
+	unsigned short	nw;
+	unsigned short	lw;
+	unsigned short	tw;
+	unsigned short	ctw;
+	unsigned short	per_color;
+}				t_visl;
+
 // Utils
 
 void			exit_error(void);
@@ -85,7 +96,7 @@ void			convert_and_index(int c, char *v[], int **d, unsigned int **i);
 unsigned int	ft_strlen(const char *str);
 int				ft_atoi(const char *str);
 void			ft_putint(int i);
-void			visual(t_sort *sort, char *str);
+void			visual(t_sort *sort, const char *str);
 void			init_sort(t_sort *sort);
 
 // Sorting Algoritms

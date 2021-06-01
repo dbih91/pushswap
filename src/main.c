@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 23:47:21  /  2021/05/31 23:55:34 @cclarice   */
+/*   Created/Updated: 2021/06/01 20:27:25  /  2021/06/01 20:38:46 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 	}
 	else if (sort->vi < 0)
 	{
-		visual(sort, "+-\nhi")
+		sort->a = create_list(d, i, c);
+		visual(sort, "hi");
 		if (sort->vi == -1)
 			p2b_sort(sort);
 		else if (sort->vi == -2)
