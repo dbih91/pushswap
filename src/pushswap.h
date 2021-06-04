@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/01 23:17:28  /  2021/06/01 23:48:03 @cclarice   */
+/*   Created/Updated: 2021/06/04 21:46:08  /  2021/06/04 21:46:08 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #include <stdio.h>
 #include <time.h>
 
-#define TW 280
+#define TW 150
 
 // includes:
 //     unistd: read() write()
@@ -107,6 +107,10 @@ void			visual(t_sort *sort, const char *str);
 void	sw1_sort(t_sort *sort);
 void	sw2_sort(t_sort *sort);
 void	p2b_sort(t_sort *sort);
+
+int a_not_sorted(t_sort *sort);
+unsigned int	index_location(t_sort *sort, unsigned int index);
+unsigned int	index_distance(t_sort *sort, unsigned int index);
 
 // game rules
 

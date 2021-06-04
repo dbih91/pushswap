@@ -10,33 +10,63 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   sw1_sort.c                               cclarice@student.21-school.ru   */
+/*   sort_utils.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/04 21:40:27  /  2021/06/04 21:40:29 @cclarice   */
-/*                                                                            */
-/* ************************************************************************** */
-/*                                                                            */
-/*   One stack swap sort                                                      */
-/*                                                                            */
-/*   Using only stack a for sorting                                           */
+/*   Created/Updated: 2021/06/04 21:46:34  /  2021/06/04 21:51:23 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-void	sw1_sort(t_sort *sort)
+int a_not_sorted(t_sort *sort)
 {
-	while (a_not_sorted(sort))
+	t_elem *ptr;
+
+	ptr = sort->a;
+	while (ptr->n)
 	{
-		if (sort->a && sort->a->n && sort->a->i > sort->a->n->i)
-			if (sort->a->i != 0 && sort->a->n->i != 0)
-				swap_a(sort);
-		rota_a(sort);
+		if (ptr->i > ptr->n->i && !(ptr->i == sort->l - 1 && ptr->n->i == 0))
+			return (1);
+		ptr = ptr->n;
 	}
-	if (index_location(sort, 0) <= sort->l / 2)
-		while (sort->a->i != 0)
-			rrta_a(sort);
-	else
-		while (sort->a->i != 0)
-			rota_a(sort);
+	return (0);
+}
+
+unsigned int	index_location(t_sort *sort, unsigned int index)
+{
+	t_elem			*ptr;
+	unsigned int	i;
+
+	i = 0;
+	ptr = sort->a;
+	while (ptr)
+	{
+		if (ptr->i == index)
+			return (i);
+		i++;
+		ptr = ptr->n;
+	}
+	return (i);
+}
+
+unsigned int	index_distance(t_sort *sort, unsigned int index)
+{
+	t_elem			*ptr;
+	unsigned int	i;
+
+	i = 0;
+	ptr = sort->a;
+	while (ptr)
+	{
+		if (ptr->i == index)
+		{
+			if (sort->l / 2 > i)
+				return (i);
+			else
+				return (sort->l - i);
+		}
+		i++;
+		ptr = ptr->n;
+	}
+	return (i);
 }

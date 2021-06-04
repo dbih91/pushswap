@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   rotate.c                                 cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 20:16:03  /  2021/05/31 20:16:08 @cclarice   */
+/*   Created/Updated: 2021/06/04 22:12:16  /  2021/06/04 22:12:17 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	rota_a(t_sort *sort)
 	{
 		frst = sort->a;
 		sort->a = sort->a->n;
-		last = sort->a->n;
+		last = sort->a;
 		while (last->n)
 			last = last->n;
 		last->n = frst;
@@ -50,7 +50,7 @@ void	rota_b(t_sort *sort)
 	{
 		frst = sort->b;
 		sort->b = sort->b->n;
-		last = sort->b->n;
+		last = sort->b;
 		while (last->n)
 			last = last->n;
 		last->n = frst;
@@ -67,22 +67,22 @@ void	rota_r(t_sort *sort)
 	if (sort->a && sort->a->n)
 	{
 		frst = sort->a;
-		frst->n = NULL;
 		sort->a = sort->a->n;
-		last = sort->a->n;
+		last = sort->a;
 		while (last->n)
 			last = last->n;
 		last->n = frst;
+		frst->n = NULL;
 	}
 	if (sort->b && sort->b->n)
 	{
 		frst = sort->b;
-		frst->n = NULL;
 		sort->b = sort->b->n;
-		last = sort->b->n;
+		last = sort->b;
 		while (last->n)
 			last = last->n;
 		last->n = frst;
+		frst->n = NULL;
 	}
 	visual(sort, "rr\n");
 }

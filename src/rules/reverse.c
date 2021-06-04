@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   reverse.c                                cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 20:12:13  /  2021/05/31 20:12:27 @cclarice   */
+/*   Created/Updated: 2021/06/04 22:04:58  /  2021/06/04 22:04:59 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	rrta_a(t_sort *sort)
 	if (sort->a && sort->a->n)
 	{
 		prel = sort->a;
-		while (prel->n->n)
+		while (prel->n && prel->n->n)
 			prel = prel->n;
 		last = prel->n;
 		last->n = sort->a;
@@ -49,7 +49,7 @@ void	rrta_b(t_sort *sort)
 	if (sort->b && sort->b->n)
 	{
 		prel = sort->b;
-		while (prel->n->n)
+		while (prel->n && prel->n->n)
 			prel = prel->n;
 		last = prel->n;
 		last->n = sort->b;
@@ -67,7 +67,7 @@ void	rrta_r(t_sort *sort)
 	if (sort->b && sort->b->n)
 	{
 		prel = sort->b;
-		while (prel->n->n)
+		while (prel->n && prel->n->n)
 			prel = prel->n;
 		last = prel->n;
 		last->n = sort->b;
@@ -77,7 +77,7 @@ void	rrta_r(t_sort *sort)
 	if (sort->a && sort->a->n)
 	{
 		prel = sort->a;
-		while (prel->n->n)
+		while (prel->n && prel->n->n)
 			prel = prel->n;
 		last = prel->n;
 		last->n = sort->a;

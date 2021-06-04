@@ -12,13 +12,13 @@
 /*                                                                            */
 /*   visual.c                                 cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/02 00:03:06  /  2021/06/02 00:03:07 @cclarice   */
+/*   Created/Updated: 2021/06/04 21:32:20  /  2021/06/04 21:42:56 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-#define TIME 1
+#define TIME 0
 
 int		ft_numlen(int i)
 {
@@ -229,6 +229,7 @@ void	visual(t_sort *sort, const char *cmd)
 		usleep(TIME);
 	if (sort->vi <= -1)
 	{
+		sort->op[0]++;
 		write(1, "\n", 1);
 		visl.tw = TW;
 		visl.ctw = 0;

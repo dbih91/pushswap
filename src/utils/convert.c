@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   convert.c                                cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 19:54:28  /  2021/05/31 19:54:44 @cclarice   */
+/*   Created/Updated: 2021/05/31 19:54:44  /  2021/06/04 21:18:29 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	has_duplicate(int *d, int size)
 
 	a = 0;
 	b = 0;
-	while (a < size)
+	while (a <= size)
 	{
-		while (b < size)
+		while (b <= size)
 		{
 			if (b != a && d[a] == d[b])
 				return (1);
