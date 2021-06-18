@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/01 23:51:49  /  2021/06/04 21:05:30 @cclarice   */
+/*   Created/Updated: 2021/06/17 14:59:44  /  2021/06/17 14:59:46 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_elem	*ft_newelem(int nbr, unsigned int index)
 	ptr->n = NULL;
 	ptr->d = nbr;
 	ptr->i = index;
+	ptr->b = 0;
 	return (ptr);
 }
 
@@ -90,6 +91,7 @@ void	create_sort(t_sort *sort, int *d, unsigned int *i, int c)
 	sort->op[0] = 0;
 	sort->op[1] = 0;
 	sort->op[2] = 0;
+	sort->op[3] = 0;
 }
 
 void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
@@ -109,6 +111,10 @@ void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 			sw1_sort(sort);
 		else if (sort->vi == -3)
 			sw2_sort(sort);
+		else if (sort->vi == -4)
+			qck_sort(sort);
+		else if (sort->vi == -5)
+			whl_sort(sort);
 		else
 			write(1, "Visual Error!\n", 14);
 		clear_sort(sort);

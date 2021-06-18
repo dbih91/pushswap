@@ -10,112 +10,61 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   sort_utils.c                             cclarice@student.21-school.ru   */
+/*   qck_sort.c                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/08 00:22:54  /  2021/06/08 00:23:09 @cclarice   */
+/*   Created/Updated: 2021/06/06 23:48:52  /  2021/06/06 23:49:12 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-unsigned int get_smallest(t_elem *stack)
-{
-	unsigned int	ret;
-	t_elem			*ptr;
-
-	ptr = stack;
-	ret = 0xffffffff;
-	while (ptr)
-	{
-		if (ptr->i < ret)
-			ret = ptr->i;
-		ptr = ptr->n;
-	}
-	return (ret);
-}
-
-unsigned int get_biggest(t_elem *stack)
-{
-	unsigned int	ret;
-	t_elem			*ptr;
-
-	
-	ptr = stack;
-	ret = 0;
-	while (ptr)
-	{
-		if (ptr->i > ret)
-			ret = ptr->i;
-		ptr = ptr->n;
-	}
-	return (ret);
-}
-
-int not_sorted(t_elem *stack)
+int	a_has_bigger(t_sort *sort, unsigned int h)
 {
 	t_elem *ptr;
 
-	ptr = stack;
-	while (ptr->n)
+	ptr = sort->a;
+	while (ptr)
 	{
-		if (ptr->i > ptr->n->i &&
-	!(ptr->i == get_biggest(stack) && ptr->n->i == get_smallest(stack)))
+		if (ptr->i <= h)
 			return (1);
 		ptr = ptr->n;
 	}
 	return (0);
 }
 
-int not_resorted(t_elem *stack)
+int	b_has_bigger(t_sort *sort, unsigned int h)
 {
 	t_elem *ptr;
 
-	ptr = stack;
-	while (ptr->n)
+	ptr = sort->b;
+	while (ptr)
 	{
-		if (ptr->i < ptr->n->i &&
-	!(ptr->i == get_smallest(stack) && ptr->n->i == get_biggest(stack)))
+		if (ptr->i <= h)
 			return (1);
 		ptr = ptr->n;
 	}
 	return (0);
 }
 
-unsigned int	index_location(t_sort *sort, unsigned int index)
+void	qck_sort(t_sort *sort)
 {
-	t_elem			*ptr;
-	unsigned int	i;
+	unsigned int	h;
+	unsigned int	t;
 
-	i = 0;
-	ptr = sort->a;
-	while (ptr)
+	h = sort->l / 2;
+	t = sort->l - h;
+	while (t <= sort->l - 4)
 	{
-		if (ptr->i == index)
-			return (i);
-		i++;
-		ptr = ptr->n;
-	}
-	return (i);
-}
-
-unsigned int	index_distance(t_sort *sort, unsigned int index)
-{
-	t_elem			*ptr;
-	unsigned int	i;
-
-	i = 0;
-	ptr = sort->a;
-	while (ptr)
-	{
-		if (ptr->i == index)
+		while (a_has_bigger(sort, t))
 		{
-			if (sort->l / 2 > i)
-				return (i);
-			else
-				return (sort->l - i);
+			if (sort->a->i <= t)
+				push_b(sort);
+			if (a_has_bigger(sort, t))
+				rrta_a(sort);
 		}
-		i++;
-		ptr = ptr->n;
+		h = h / 2;
+		t += h;
 	}
-	return (i);
+	//while (sort->a)
+		push_b(sort);
 }

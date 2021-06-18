@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/04 21:46:08  /  2021/06/04 21:46:08 @cclarice   */
+/*   Created/Updated: 2021/06/18 15:27:31  /  2021/06/18 15:27:48 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #include <stdio.h>
 #include <time.h>
 
-#define TW 150
+#define TW 190
 
 // includes:
 //     unistd: read() write()
@@ -42,6 +42,7 @@ typedef struct s_elem
 {
 	int					d;
 	unsigned int		i;
+	unsigned int		b;
 	struct s_elem		*n;
 }				t_elem;
 
@@ -74,7 +75,7 @@ typedef struct s_sort
 	int				ss;
 	int				fr;
 	int				sr;
-	unsigned int	op[3];
+	unsigned int	op[4];
 	int				vi;
 	int				trash;
 }				t_sort;
@@ -91,38 +92,43 @@ typedef struct s_visl
 // Utils
 
 void			exit_error(void);
-
 void			convert_and_index(int c, char *v[], int **d, unsigned int **i);
-
 unsigned int	ft_strlen(const char *str);
-int				ft_atoi(const char *str);
-void			ft_putint(int i);
 void			init_sort(t_sort *sort);
+void			ft_putint(int i);
+int				ft_atoi(const char *str);
 
 void			put_digit(int d, int w, unsigned int i, int c);
 void			visual(t_sort *sort, const char *str);
 
 // Sorting Algoritms
 
-void	sw1_sort(t_sort *sort);
-void	sw2_sort(t_sort *sort);
-void	p2b_sort(t_sort *sort);
+void			sw1_sort(t_sort *sort);
+void			sw2_sort(t_sort *sort);
+void			p2b_sort(t_sort *sort);
+void			qck_sort(t_sort *sort);
+void			whl_sort(t_sort *sort);
 
-int a_not_sorted(t_sort *sort);
+// Sorting Utils
+
+unsigned int	get_smallest(t_elem *stack);
+unsigned int	get_biggest(t_elem *stack);
+int 			not_sorted(t_elem *stack);
+int 			not_resorted(t_elem *stack);
 unsigned int	index_location(t_sort *sort, unsigned int index);
 unsigned int	index_distance(t_sort *sort, unsigned int index);
 
 // game rules
 
-void	swap_a(t_sort *sort);
-void	swap_b(t_sort *sort);
-void	swap_s(t_sort *sort);
-void	push_a(t_sort *sort);
-void	push_b(t_sort *sort);
-void	rota_a(t_sort *sort);
-void	rota_b(t_sort *sort);
-void	rota_r(t_sort *sort);
-void	rrta_a(t_sort *sort);
-void	rrta_b(t_sort *sort);
+void			swap_a(t_sort *sort);
+void			swap_b(t_sort *sort);
+void			swap_s(t_sort *sort);
+void			push_a(t_sort *sort);
+void			push_b(t_sort *sort);
+void			rota_a(t_sort *sort);
+void			rota_b(t_sort *sort);
+void			rota_r(t_sort *sort);
+void			rrta_a(t_sort *sort);
+void			rrta_b(t_sort *sort);
 
 #endif

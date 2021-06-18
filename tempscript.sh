@@ -44,6 +44,9 @@ then
 else if [[ $1 == "-v3" ]]
 then
 ./push_swap $1 $ALL
+else if [[ $1 == "-v4" ]]
+then
+./push_swap $1 $ALL
 else if [ 1 == 1 ]
 then
 
@@ -55,4 +58,4 @@ then
 else if [ 1 == 1 ]
 then
 	./push_swap $ALL | ./checker_Mac $ALL
-fi fi fi fi fi fi
+fi fi fi fi fi fi fi

@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   visual.c                                 cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/04 21:32:20  /  2021/06/04 21:42:56 @cclarice   */
+/*   Created/Updated: 2021/06/06 15:31:14  /  2021/06/06 15:31:25 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void	put_trht(t_sort *sort, t_visl visl)
 void	put_end(t_sort *sort, const char *cmd, t_visl visl)
 {
 	write(1, "\\ ", 2);
-	put_digit(sort->op[sort->vi * -1 - 1], 6, 100000, 100000);
+	put_digit(sort->op[0], 6, 100000, 100000);
 	visl.ctw = 10;
 	if (cmd[0] == 'p' && cmd[1] == 'b')
 	{

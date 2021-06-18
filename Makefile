@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/06/04 21:38:09  /  2021/06/04 21:38:14 @cclarice    #
+#    Created/Updated: 2021/06/06 15:20:07  /  2021/06/17 14:59:15 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ TSTN = test_xtox
 # SRCS
 SRCF = src
 SRC_RULES  = push.c reverse.c rotate.c swap.c
-SRC_SORT   = p2b_sort.c sw1_sort.c sw2_sort.c sort_utils.c
+SRC_SORT   = p2b_sort.c sw1_sort.c sw2_sort.c qck_sort.c whl_sort.c sort_utils.c
 SRC_UTILS  = ft_atoi.c ft_putint.c ft_strlen.c convert.c
 SRC_VISUAL = put_digit.c visual.c visual_utils.c
 SRC  = $(addprefix rules/, $(SRC_RULES)) \

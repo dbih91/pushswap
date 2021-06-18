@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   sw1_sort.c                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/04 21:40:27  /  2021/06/04 21:40:29 @cclarice   */
+/*   Created/Updated: 2021/06/06 14:37:30  /  2021/06/08 00:03:20 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
@@ -26,7 +26,7 @@
 
 void	sw1_sort(t_sort *sort)
 {
-	while (a_not_sorted(sort))
+	while (not_sorted(sort->a))
 	{
 		if (sort->a && sort->a->n && sort->a->i > sort->a->n->i)
 			if (sort->a->i != 0 && sort->a->n->i != 0)
