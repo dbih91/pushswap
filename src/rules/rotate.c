@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   rotate.c                                 cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/04 22:12:16  /  2021/06/04 22:12:17 @cclarice   */
+/*   Created/Updated: 2021/06/18 16:31:39  /  2021/06/18 16:31:42 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	rota_a(t_sort *sort)
 			last = last->n;
 		last->n = frst;
 		frst->n = NULL;
+		sort->al = frst;
 	}
 	visual(sort, "ra\n");
 }
@@ -55,6 +56,7 @@ void	rota_b(t_sort *sort)
 			last = last->n;
 		last->n = frst;
 		frst->n = NULL;
+		sort->bl = frst;
 	}
 	visual(sort, "rb\n");
 }
@@ -73,6 +75,7 @@ void	rota_r(t_sort *sort)
 			last = last->n;
 		last->n = frst;
 		frst->n = NULL;
+		sort->al = frst;
 	}
 	if (sort->b && sort->b->n)
 	{
@@ -83,6 +86,7 @@ void	rota_r(t_sort *sort)
 			last = last->n;
 		last->n = frst;
 		frst->n = NULL;
+		sort->bl = frst;
 	}
 	visual(sort, "rr\n");
 }

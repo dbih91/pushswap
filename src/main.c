@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/17 14:59:44  /  2021/06/17 14:59:46 @cclarice   */
+/*   Created/Updated: 2021/06/18 17:06:42  /  2021/06/18 17:56:51 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_elem	*ft_newelem(int nbr, unsigned int index)
 	ptr->n = NULL;
 	ptr->d = nbr;
 	ptr->i = index;
-	ptr->b = 0;
 	return (ptr);
 }
 
@@ -84,6 +83,8 @@ void	clear_sort(t_sort *sort)
 
 void	create_sort(t_sort *sort, int *d, unsigned int *i, int c)
 {
+	t_elem *last;
+
 	clear_sort(sort);
 	sort->a = create_list(d, i, c, &sort->l);
 	sort->la = sort->l;
@@ -92,6 +93,11 @@ void	create_sort(t_sort *sort, int *d, unsigned int *i, int c)
 	sort->op[1] = 0;
 	sort->op[2] = 0;
 	sort->op[3] = 0;
+	last = sort->a;
+	while (last->n)
+		last = last->n;
+	sort->al = last;
+	sort->bl = NULL;
 }
 
 void	sorting(t_sort *sort, int *d, unsigned int *i, int c)

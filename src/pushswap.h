@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/18 15:27:31  /  2021/06/18 15:27:48 @cclarice   */
+/*   Created/Updated: 2021/06/18 18:26:59  /  2021/06/18 18:27:01 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,17 @@
 //	
 //	d - (Digit) integer
 //	i - (Index) index of number
+//	a - (rotate)
+//	b - (rotate)
 //	n - (Next) next element
 
 typedef struct s_elem
 {
 	int					d;
 	unsigned int		i;
-	unsigned int		b;
+	int					a;
+	int					b;
+	unsigned int		l;
 	struct s_elem		*n;
 }				t_elem;
 
@@ -68,6 +72,8 @@ typedef struct s_sort
 {
 	t_elem			*a;
 	t_elem			*b;
+	t_elem			*al;
+	t_elem			*bl;
 	unsigned int	l;
 	unsigned int	la;
 	unsigned int	lb;

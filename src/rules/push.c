@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   push.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/31 20:08:00  /  2021/05/31 20:08:12 @cclarice   */
+/*   Created/Updated: 2021/06/18 16:28:37  /  2021/06/18 16:28:51 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,14 @@ void	push_a(t_sort *sort)
 {
 	t_elem *ptr;
 
-	if (sort->b)
-	{
+	if (sort->b && ++sort->la)
 		sort->lb--;
-		sort->la++;
-	}
 	if (sort->b && !sort->a) // if a is not
 	{
 		sort->a = sort->b;
 		sort->b = sort->b->n;
 		sort->a->n = NULL;
+		sort->al = sort->a;
 	}
 	else if (sort->b)
 	{
@@ -44,6 +42,8 @@ void	push_a(t_sort *sort)
 		sort->b = sort->b->n;
 		sort->a->n = ptr;
 	}
+	if (!sort->b)
+		sort->bl = NULL;
 	visual(sort, "pa\n");
 }
 
@@ -51,16 +51,14 @@ void	push_b(t_sort *sort)
 {
 	t_elem *ptr;
 
-	if (sort->a)
-	{
-		sort->lb++;
+	if (sort->a && ++sort->lb)
 		sort->la--;
-	}
 	if (sort->a && !sort->b) // if b is not
 	{
 		sort->b = sort->a;
 		sort->a = sort->a->n;
 		sort->b->n = NULL;
+		sort->bl = sort->b;
 	}
 	else if (sort->a)
 	{
@@ -69,5 +67,7 @@ void	push_b(t_sort *sort)
 		sort->a = sort->a->n;
 		sort->b->n = ptr;
 	}
+	if (!sort->a)
+		sort->al = NULL;
 	visual(sort, "pb\n");
 }
