@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/18 17:06:42  /  2021/06/18 17:56:51 @cclarice   */
+/*   Created/Updated: 2021/06/18 17:56:51  /  2021/06/19 14:16:02 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_elem	*ft_newelem(int nbr, unsigned int index)
 	ptr->n = NULL;
 	ptr->d = nbr;
 	ptr->i = index;
+	ptr->w = 0;
 	return (ptr);
 }
 

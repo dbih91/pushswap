@@ -30,9 +30,9 @@ done
 done
 # RANDOM GENERATOR #
 
-ALL="9 2 3 5 7 1 6 0 4 8"
-
 ALL="${ARR[*]}"
+
+#ALL="18 13 9 15 2 11 3 5 17 7 14 1 12 6 0 16 4 19 8 10"
 
 make
 if      [[ $1 == "-v1" ]]

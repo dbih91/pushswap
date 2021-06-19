@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   whl_sort.c                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/19 04:28:14  /  2021/06/19 04:29:52 @cclarice   */
+/*   Created/Updated: 2021/06/19 14:40:56  /  2021/06/19 14:41:09 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	find_distances(t_sort *sort, t_elem *ptrb, t_elem *ptra)
 	int	i;
 
 	i = 0;
-	if (sort->b->i > ptra->i && ptra->i > sort->bl->i && sort->bl->i != 0)
+	if (sort->bl->i > ptra->i && ptra->i > sort->b->i)
 	{
 		ptra->b = 0;
 		ptra->l = mdl(ptra->a);
@@ -38,19 +38,29 @@ void	find_distances(t_sort *sort, t_elem *ptrb, t_elem *ptra)
 	}
 	while (ptrb && ptrb->n)
 	{
-		if (ptrb->i > ptra->i && ptra->i > ptrb->n->i && ptrb->n->i != 0)
-			break ;
 		i++;
-		if (i == sort->lb / 2 + sort->lb % 2)
+		if (i && i == sort->lb / 2 + sort->lb % 2)
 		{
 			if (sort->lb % 2)
 				i--;
 			i *= -1;
 		}
+		if (ptrb->i > ptra->i && ptra->i > ptrb->n->i)
+			break ;
 		ptrb = ptrb->n;
 	}
 	ptra->b = i;
-	ptra->l = mdl(ptra->a) + mdl(i);
+	if (ptra->a > 0 && ptra->b > 0)
+	{
+		if (mdl(ptra->a) > mdl(ptra->b))
+			ptra->l = mdl(ptra->a);
+		else
+			ptra->l = mdl(ptra->b);
+	}
+	else
+		ptra->l = mdl(ptra->a) + mdl(i);
+	if (ptra->w)
+		ptra->l = 0xffffff;
 }
 
 t_elem	*add_distances(t_sort *sort)
@@ -145,27 +155,58 @@ void	push_min_max(t_sort *sort)
 		swap_b(sort);
 }
 
+int		a_has_w(t_elem *ptr)
+{
+	while (ptr)
+	{
+		if (!ptr->w)
+			return (1);
+		ptr = ptr->n;
+	}
+	return (0);
+}
+
 void	whl_sort(t_sort *sort)
 {
 	t_elem *ptr;
+	int i;
 
+	i = 1;
 	push_min_max(sort);
-	while (sort->a && sort->a->n)
+	while (a_has_w(sort->a))
 	{
+		if (sort->lb > sort->l / 2 + 1 && i && i--)
+		{
+			while (sort->b->i != sort->l - 1 && sort->b->n->i != 0)
+			{
+				if (sort->b->i != 0 && sort->b->i != sort->l - 1)
+				{
+					sort->b->w = 1;
+					push_a(sort);
+				}
+				else
+					rota_b(sort);
+			}
+			usleep(10000000);
+		}
 		ptr = get_distances(sort);
 		while (ptr->a)
 		{
-			if (ptr->a > 0 && ptr->a--)
+			if (ptr->a > 0 && ptr->b > 0 && ptr->b-- && ptr->a--)
+				rota_r(sort);
+			else if (ptr->a > 0 && ptr->a--)
 				rota_a(sort);
+			else if (ptr->b < 0 && ptr->b++ && ptr->a++)
+				rrta_r(sort);
 			else if (ptr->a++)
 				rrta_a(sort);
 		}
 		while (ptr->b)
 		{
 			if (ptr->b > 0 && ptr->b--)
-				rrta_b(sort);
-			else if (ptr->b++)
 				rota_b(sort);
+			else if (ptr->b++)
+				rrta_b(sort);
 		}
 		push_b(sort);
 	}

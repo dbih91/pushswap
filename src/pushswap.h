@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/18 18:26:59  /  2021/06/18 18:27:01 @cclarice   */
+/*   Created/Updated: 2021/06/19 14:15:41  /  2021/06/19 14:15:50 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_elem
 	int					b;
 	unsigned int		l;
 	struct s_elem		*n;
+	unsigned int		w;
 }				t_elem;
 
 //	struct Sort
@@ -136,5 +137,6 @@ void			rota_b(t_sort *sort);
 void			rota_r(t_sort *sort);
 void			rrta_a(t_sort *sort);
 void			rrta_b(t_sort *sort);
+void			rrta_r(t_sort *sort);
 
 #endif

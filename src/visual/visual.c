@@ -12,13 +12,13 @@
 /*                                                                            */
 /*   visual.c                                 cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/06 15:31:14  /  2021/06/06 15:31:25 @cclarice   */
+/*   Created/Updated: 2021/06/19 14:39:55  /  2021/06/19 14:40:04 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-#define TIME 0
+#define TIME 100000
 
 int		ft_numlen(int i)
 {
