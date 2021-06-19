@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   whl_sort.c                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/18 18:44:37  /  2021/06/18 18:46:07 @cclarice   */
+/*   Created/Updated: 2021/06/19 04:28:14  /  2021/06/19 04:29:52 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	find_distances(t_sort *sort, t_elem *ptrb, t_elem *ptra)
 	int	i;
 
 	i = 0;
-	if (sort->b->i > ptra->i && ptra->i > sort->bl->i)
+	if (sort->b->i > ptra->i && ptra->i > sort->bl->i && sort->bl->i != 0)
 	{
 		ptra->b = 0;
 		ptra->l = mdl(ptra->a);
@@ -38,7 +38,7 @@ void	find_distances(t_sort *sort, t_elem *ptrb, t_elem *ptra)
 	}
 	while (ptrb && ptrb->n)
 	{
-		if (ptrb->i > ptra->i && ptra->i > ptrb->n->i)
+		if (ptrb->i > ptra->i && ptra->i > ptrb->n->i && ptrb->n->i != 0)
 			break ;
 		i++;
 		if (i == sort->lb / 2 + sort->lb % 2)
@@ -93,16 +93,63 @@ t_elem	*get_distances(t_sort *sort)
 	return (add_distances(sort));
 }
 
+int		get_distance_index(t_elem *ptr, unsigned int l, unsigned int i)
+{
+	int ret;
+
+	ret = 0;
+	while (ptr->i != i)
+	{
+		ret++;
+		if (ret == l / 2 + l % 2)
+		{
+			if (l % 2)
+				ret--;
+			ret *= -1;
+		}
+		ptr = ptr->n;
+	}
+	return (ret);
+}
+
+void	push_min_max(t_sort *sort)
+{
+	int		d;
+
+	if (mdl(get_distance_index(sort->a, sort->la, sort->l - 1)) <=
+		mdl(get_distance_index(sort->a, sort->la, 0)))
+		d = get_distance_index(sort->a, sort->la, sort->l - 1);
+	else
+		d = get_distance_index(sort->a, sort->la, 0);
+	while (d != 0)
+	{
+		if (d > 0 && d--)
+			rota_a(sort);
+		else if (d++)
+			rrta_a(sort);
+	}
+	push_b(sort);
+	if (sort->b->i == 0)
+		d = get_distance_index(sort->a, sort->la, sort->l - 1);
+	else
+		d = get_distance_index(sort->a, sort->la, 0);
+	while (d != 0)
+	{
+		if (d > 0 && d--)
+			rota_a(sort);
+		else if (d++)
+			rrta_a(sort);
+	}
+	push_b(sort);
+	if (sort->b->i < sort->b->n->i)
+		swap_b(sort);
+}
+
 void	whl_sort(t_sort *sort)
 {
 	t_elem *ptr;
 
-	if (sort->a)
-		push_b(sort);
-	if (sort->a)
-		push_b(sort);
-	if (sort->b->i < sort->b->n->i)
-		swap_b(sort);
+	push_min_max(sort);
 	while (sort->a && sort->a->n)
 	{
 		ptr = get_distances(sort);
