@@ -74,7 +74,7 @@ OS=$(ls /etc | grep os-release)
 if [[ $OS == "os-release" ]]
 then
 	NOW=$(./push_swap $ALL | wc -w)
-	if [[ $NOW > $MAX ]]
+	if [[ (($NOW > $MAX)) ]]
 	then
 		MAX=($NOW)
 	fi
@@ -87,8 +87,18 @@ then
 	#RET="KO"
 else if [ 1 == 1 ]
 then
-	./push_swap $ALL | wc -w
-#	./push_swap $ALL | ./checker_Mac $ALL
+	NOW=$(./push_swap $ALL | wc -w)
+	if [[ $NOW -gt $MAX ]]
+	then
+		MAX=$NOW
+	fi
+	#AVG=$((($AVG * (ITR - 1) + $NOW) / ITR))
+	AVG=$(echo "scale=10;($AVG*($ITR-1)+$NOW)/$ITR" | bc)
+	ITR=$(($ITR + 1))
+	RET=$(./push_swap $ALL | ./checker_Mac $ALL)
+	#echo Ret $RET
+	echo -e "\033[2J   Now $NOW\n   Avg $AVG\n   Max $MAX\n   Itr $ITR"
+	#RET="KO"
 fi fi fi fi fi fi fi fi
 done
 echo $ALL
