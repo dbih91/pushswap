@@ -83,11 +83,7 @@ then
 	ITR=$(($ITR + 1))
 	RET=$(./push_swap $ALL | ./checker_linux $ALL)
 	#echo Ret $RET
-	echo
-	echo Now $NOW
-	echo Avg $AVG
-	echo Max $MAX
-	echo Itr $ITR
+	echo -e "\033[2J   Now $NOW\n   Avg $AVG\n   Max $MAX\n   Itr $ITR"
 	#RET="KO"
 else if [ 1 == 1 ]
 then

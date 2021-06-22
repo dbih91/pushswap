@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/21 22:52:51  /  2021/06/21 22:53:03 @cclarice   */
+/*   Created/Updated: 2021/06/22 16:05:55  /  2021/06/22 16:06:28 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,16 +115,22 @@ void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 			clear_sort(sort);
 			create_sort(sort, d, i, c);
 			whl_sort_2(sort);
+			sort->opr++;
+			clear_sort(sort);
+			create_sort(sort, d, i, c);
+			whl_sort_3(sort);
 			clear_sort(sort);
 			create_sort(sort, d, i, c);
 			sort->vi = 1;
 			//printf("%u %u %u\n", sort->op[0], sort->op[1], sort->op[2]);
-			if (sort->op[0] < sort->op[1] && sort->op[0] < sort->op[2])
+			if (sort->op[0] <= sort->op[1] && sort->op[0] <= sort->op[2] && sort->op[0] <= sort->op[3])
 				/* printf("%u", sort->op[0]); */ whl_sort_0(sort);
-			else if (sort->op[1] < sort->op[0] && sort->op[1] < sort->op[2])
+			else if (sort->op[1] <= sort->op[0] && sort->op[1] <= sort->op[2] && sort->op[1] <= sort->op[3])
 				/* printf("%u", sort->op[1]); */ whl_sort_1(sort);
+			else if (sort->op[2] <= sort->op[0] && sort->op[2] <= sort->op[1] && sort->op[1] <= sort->op[3])
+				/* printf("%u", sort->op[1]); */ whl_sort_2(sort);
 			else
-				/* printf("%u", sort->op[2]); */ whl_sort_2(sort);
+				/* printf("%u", sort->op[2]); */ whl_sort_3(sort);
 		}
 		else
 			sw1_sort(sort);
@@ -143,7 +149,7 @@ void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 		else if (sort->vi == -4)
 			qck_sort(sort);
 		else if (sort->vi == -5)
-			whl_sort_0(sort);
+			whl_sort_2(sort);
 		else
 			write(1, "Visual Error!\n", 14);
 		clear_sort(sort);

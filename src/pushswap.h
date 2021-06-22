@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/21 22:23:02  /  2021/06/21 22:49:14 @cclarice   */
+/*   Created/Updated: 2021/06/22 16:02:36  /  2021/06/22 16:02:39 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void			qck_sort(t_sort *sort);
 void			whl_sort_0(t_sort *sort);
 void			whl_sort_1(t_sort *sort);
 void			whl_sort_2(t_sort *sort);
+void			whl_sort_3(t_sort *sort);
 
 // Sorting Utils
 
