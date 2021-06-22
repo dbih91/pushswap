@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/19 14:15:41  /  2021/06/19 14:15:50 @cclarice   */
+/*   Created/Updated: 2021/06/21 22:23:02  /  2021/06/21 22:49:14 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_sort
 	int				ss;
 	int				fr;
 	int				sr;
+	unsigned int	opr;
 	unsigned int	op[4];
 	int				vi;
 	int				trash;
@@ -114,7 +115,9 @@ void			sw1_sort(t_sort *sort);
 void			sw2_sort(t_sort *sort);
 void			p2b_sort(t_sort *sort);
 void			qck_sort(t_sort *sort);
-void			whl_sort(t_sort *sort);
+void			whl_sort_0(t_sort *sort);
+void			whl_sort_1(t_sort *sort);
+void			whl_sort_2(t_sort *sort);
 
 // Sorting Utils
 

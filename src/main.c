@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/18 17:56:51  /  2021/06/19 14:16:02 @cclarice   */
+/*   Created/Updated: 2021/06/21 22:52:51  /  2021/06/21 22:53:03 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,6 @@ void	create_sort(t_sort *sort, int *d, unsigned int *i, int c)
 	sort->a = create_list(d, i, c, &sort->l);
 	sort->la = sort->l;
 	sort->lb = 0;
-	sort->op[0] = 0;
-	sort->op[1] = 0;
-	sort->op[2] = 0;
-	sort->op[3] = 0;
 	last = sort->a;
 	while (last->n)
 		last = last->n;
@@ -106,6 +102,32 @@ void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 	if (sort->vi == 0)
 	{
 		create_sort(sort, d, i, c);
+		if (sort->l >= 5)
+		{
+			//write(1, "hi\n", 3);
+			sort->opr = 0;
+			whl_sort_0(sort);
+			sort->opr++;
+			clear_sort(sort);
+			create_sort(sort, d, i, c);
+			whl_sort_1(sort);
+			sort->opr++;
+			clear_sort(sort);
+			create_sort(sort, d, i, c);
+			whl_sort_2(sort);
+			clear_sort(sort);
+			create_sort(sort, d, i, c);
+			sort->vi = 1;
+			//printf("%u %u %u\n", sort->op[0], sort->op[1], sort->op[2]);
+			if (sort->op[0] < sort->op[1] && sort->op[0] < sort->op[2])
+				/* printf("%u", sort->op[0]); */ whl_sort_0(sort);
+			else if (sort->op[1] < sort->op[0] && sort->op[1] < sort->op[2])
+				/* printf("%u", sort->op[1]); */ whl_sort_1(sort);
+			else
+				/* printf("%u", sort->op[2]); */ whl_sort_2(sort);
+		}
+		else
+			sw1_sort(sort);
 		clear_sort(sort);
 	}
 	else if (sort->vi < 0)
@@ -121,7 +143,7 @@ void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 		else if (sort->vi == -4)
 			qck_sort(sort);
 		else if (sort->vi == -5)
-			whl_sort(sort);
+			whl_sort_0(sort);
 		else
 			write(1, "Visual Error!\n", 14);
 		clear_sort(sort);
@@ -136,6 +158,10 @@ int	main(int c, char *v[])
 
 	sort.a = NULL;
 	sort.b = NULL;
+	sort.op[0] = 0;
+	sort.op[1] = 0;
+	sort.op[2] = 0;
+	sort.op[3] = 0;
 	(v++ && c--);
 	if (v[0] && v[0][0] && v[0][1] &&
 		v[0][0] == '-' && v[0][1] == 'v' && v[0][2] >= '1' && v[0][2] <= '9')
