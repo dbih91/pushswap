@@ -12,16 +12,20 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/23 19:30:20  /  2021/06/23 19:30:31 @cclarice   */
+/*   Created/Updated: 2021/06/22 16:02:36  /  2021/06/22 16:02:39 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
-# define TW 190
 
 # include <stdlib.h>
 # include <unistd.h>
+
+#include <stdio.h>
+#include <time.h>
+
+#define TW 190
 
 // includes:
 //     unistd: read() write()
@@ -96,7 +100,6 @@ typedef struct s_visl
 // Utils
 
 void			exit_error(void);
-int				not_integer(const char *str);
 void			convert_and_index(int c, char *v[], int **d, unsigned int **i);
 unsigned int	ft_strlen(const char *str);
 void			init_sort(t_sort *sort);
@@ -109,24 +112,20 @@ void			visual(t_sort *sort, const char *str);
 // Sorting Algoritms
 
 void			sw1_sort(t_sort *sort);
+void			sw2_sort(t_sort *sort);
+void			p2b_sort(t_sort *sort);
+void			qck_sort(t_sort *sort);
 void			whl_sort_0(t_sort *sort);
 void			whl_sort_1(t_sort *sort);
 void			whl_sort_2(t_sort *sort);
 void			whl_sort_3(t_sort *sort);
 
 // Sorting Utils
-unsigned int	push_mn(t_sort *sort, int d, unsigned int m);
-void	push_min_max(t_sort *sort);
-int		a_has_w(t_elem *ptr);
-unsigned int	mdl(int i);
-void			find_distances(t_sort *sort, t_elem *ptrb, t_elem *ptra, t_elem *ret);
-t_elem			*add_distances(t_sort *sort);
-t_elem			*get_distances(t_sort *sort);
-int				get_distance_index(t_elem *ptr, unsigned int l, unsigned int i);
+
 unsigned int	get_smallest(t_elem *stack);
 unsigned int	get_biggest(t_elem *stack);
-int				not_sorted(t_elem *stack);
-int				not_resorted(t_elem *stack);
+int 			not_sorted(t_elem *stack);
+int 			not_resorted(t_elem *stack);
 unsigned int	index_location(t_sort *sort, unsigned int index);
 unsigned int	index_distance(t_sort *sort, unsigned int index);
 

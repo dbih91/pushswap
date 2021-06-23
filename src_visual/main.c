@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/23 19:51:44  /  2021/06/23 19:52:04 @cclarice   */
+/*   Created/Updated: 2021/06/23 17:02:39  /  2021/06/23 17:02:41 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ t_elem	*create_list(int *d, unsigned int *i, int c, unsigned int *l)
 
 void	clear_sort(t_sort *sort)
 {
-	t_elem	*ptr;
-	t_elem	*nxt;
+	t_elem *ptr;
+	t_elem *nxt;
 
 	ptr = sort->a;
 	while (ptr)
@@ -84,7 +84,7 @@ void	clear_sort(t_sort *sort)
 
 void	create_sort(t_sort *sort, int *d, unsigned int *i, int c)
 {
-	t_elem	*last;
+	t_elem *last;
 
 	clear_sort(sort);
 	sort->a = create_list(d, i, c, &sort->l);
@@ -99,11 +99,12 @@ void	create_sort(t_sort *sort, int *d, unsigned int *i, int c)
 
 void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 {
-	create_sort(sort, d, i, c);
 	if (sort->vi == 0)
 	{
-		if (sort->l >= 4 && sort->l < 750)
+		create_sort(sort, d, i, c);
+		if (sort->l >= 4)
 		{
+			//write(1, "hi\n", 3);
 			sort->opr = 0;
 			whl_sort_0(sort);
 			sort->opr++;
@@ -121,19 +122,39 @@ void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 			clear_sort(sort);
 			create_sort(sort, d, i, c);
 			sort->vi = 1;
+			//printf("%u %u %u\n", sort->op[0], sort->op[1], sort->op[2]);
 			if (sort->op[0] <= sort->op[1] && sort->op[0] <= sort->op[2] && sort->op[0] <= sort->op[3])
-				whl_sort_0(sort);
+				/* printf("%u", sort->op[0]); */ whl_sort_0(sort);
 			else if (sort->op[1] <= sort->op[0] && sort->op[1] <= sort->op[2] && sort->op[1] <= sort->op[3])
-				whl_sort_1(sort);
+				/* printf("%u", sort->op[1]); */ whl_sort_1(sort);
 			else if (sort->op[2] <= sort->op[0] && sort->op[2] <= sort->op[1] && sort->op[1] <= sort->op[3])
-				whl_sort_2(sort);
+				/* printf("%u", sort->op[1]); */ whl_sort_2(sort);
 			else
-				whl_sort_3(sort);
+				/* printf("%u", sort->op[2]); */ whl_sort_3(sort);
 		}
-		else if (++sort->vi && sort->l >= 750)
-			whl_sort_1(sort);
 		else
+		{
+			sort->vi = 1;
 			sw1_sort(sort);
+		}
+		clear_sort(sort);
+	}
+	else if (sort->vi < 0)
+	{
+		create_sort(sort, d, i, c);
+		visual(sort, "hi\n");
+		if (sort->vi == -1)
+			p2b_sort(sort);
+		else if (sort->vi == -2)
+			sw1_sort(sort);
+		else if (sort->vi == -3)
+			sw2_sort(sort);
+		else if (sort->vi == -4)
+			qck_sort(sort);
+		else if (sort->vi == -5)
+			whl_sort_2(sort);
+		else
+			write(1, "Visual Error!\n", 14);
 		clear_sort(sort);
 	}
 }
@@ -151,9 +172,14 @@ int	main(int c, char *v[])
 	sort.op[2] = 0;
 	sort.op[3] = 0;
 	(v++ && c--);
-	if (c && not_integer(v[0]))
-		exit_error();
-	sort.vi = 0;
+	if (v[0] && v[0][0] && v[0][1] &&
+		v[0][0] == '-' && v[0][1] == 'v' && v[0][2] >= '1' && v[0][2] <= '9')
+	{
+		sort.vi = (v[0][2] - '0') * -1;
+		(v++ && c--);
+	}
+	else
+		sort.vi = 0;
 	if (c <= 1)
 		return (0);
 	convert_and_index(c, v, &d, &i);

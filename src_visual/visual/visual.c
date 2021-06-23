@@ -12,11 +12,13 @@
 /*                                                                            */
 /*   visual.c                                 cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/23 19:13:07  /  2021/06/23 19:13:23 @cclarice   */
+/*   Created/Updated: 2021/06/22 15:52:46  /  2021/06/22 15:52:48 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
+
+#define TIME 0//100000
 
 int		ft_numlen(int i)
 {
@@ -223,6 +225,8 @@ void	visual(t_sort *sort, const char *cmd)
 {
 	t_visl visl;
 
+	if (TIME)
+		usleep(TIME);
 	if (sort->vi <= -1)
 	{
 		sort->op[0]++;
@@ -236,7 +240,98 @@ void	visual(t_sort *sort, const char *cmd)
 		put_sort(sort, cmd, visl);
 	}
 	else if (sort->vi == 0)
+	{
 		sort->op[sort->opr]++;
+	}
 	else
 		write(1, cmd, ft_strlen(cmd));
 }
+
+//void	fill_spaces(char *str)
+//{
+//	int c;
+//
+//	c = 0;
+//	while (c < TW)
+//	{
+//		str[c] = ' ';
+//		c++;
+//	}
+//	str[c] = '\n';
+//	str[c + 1] = '\0';
+//}
+//
+//void	itoa(int i, char *str, int p)
+//{
+//
+//}
+//
+//void	put_frst(t_sort *sort, const char *cmd, t_visl visl, char *str)
+//{
+//	int p;
+//	t_elem *ptr;
+//
+//	p = 7;
+//	str[0] = '/';
+//	str[2] = cmd[0];
+//	str[3] = cmd[1];
+//	if (cmd[2])
+//		str[4] = cmd[2];
+//	while (p < TW)
+//	{
+//		str[p] = '|';
+//		p += visl.nw;
+//	}
+//	str[TW - 1] = '\\';
+//	sort->l = 0;
+//	write(1, str, ft_strlen(str));
+//}
+//
+//void	put_scnd(t_sort *sort, t_visl visl, char *str)
+//{
+//	int p;
+//
+//	p = 7;
+//	str[0] = '|';
+//	str[2] = ' ';
+//	str[3] = ' ';
+//	str[4] = ' ';
+//	str[6] = 'A';
+//	while (p < TW)
+//	{
+//		str[p] = '|';
+//		p += visl.nw;
+//	}
+//	str[TW - 1] = '\\';
+//	sort->l = 0;
+//	write(1, str, ft_strlen(str));
+//}
+
+//  void	writesort(t_sort sort)
+//  {
+//  	t_elem *ptr;
+//  	static int it = 0;
+//  
+//  	it++;
+//  	ptr = sort.a;
+//  	//printf("| cc %4d | ca %4d | cb %4d | it %4d | sf %4d | ss %4d |", sort.cc, sort.ca, sort.cb, it, sort.sf, sort.ss);
+//  	printf("\n\033[1;32mA[");
+//  	while (ptr)
+//  	{
+//  		printf("%d", ptr->i);
+//  		if (ptr->n)
+//  			printf(", ");
+//  		ptr = ptr->n;
+//  	}
+//  	printf("]\033[0m\n");
+//  	ptr = sort.b;
+//  	printf("\033[1;92mB[");
+//  	while (ptr)
+//  	{
+//  		printf("%d", ptr->i);
+//  		if (ptr->n)
+//  			printf(", ");
+//  		ptr = ptr->n;
+//  	}
+//  	printf("]\033[0m\n+--------=+=-------=+=--------+\n");
+//  }
