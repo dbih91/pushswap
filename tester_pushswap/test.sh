@@ -2,7 +2,12 @@
 
 # README
 # ./test.sh <Numbers> <HOW MUCH TIMES> <INCLUDE NEGATIVE NUMBERS>
-PATH_TO="../"
+if [ -e Makefile ]
+then
+	PATH_TO="./"
+else
+	PATH_TO="../"
+fi
 cd $PATH_TO
 PUSH_SWAP="./push_swap"
 
