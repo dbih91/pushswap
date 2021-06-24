@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 05:36:09  /  2021/06/24 05:36:28 @cclarice   */
+/*   Created/Updated: 2021/06/24 05:49:43  /  2021/06/24 05:50:37 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
 {
 	create_sort(sort, d, i, c);
-	if (sort->l >= 4 && sort->l < 750)
+	if (sort->l >= 6 && sort->l < 750)
 	{
 		whl_sort(sort, ++sort->opr);
 		whl_sort(create_sort(sort, d, i, c), ++sort->opr);
