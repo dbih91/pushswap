@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   sort_utils.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 03:25:04  /  2021/06/24 03:36:48 @cclarice   */
+/*   Created/Updated: 2021/06/24 03:58:28  /  2021/06/24 03:58:56 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ void	ok_if_sorted(t_sort *sort)
 	t_elem	*ptr;
 
 	ptr = sort->a;
+	if (sort->b)
+	{
+		write(1, "KO\n", 3);
+		return ;
+	}
 	if (!ptr || !ptr->n)
 	{
 		write(1, "OK\n", 3);
