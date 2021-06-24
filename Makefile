@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/06/24 02:29:58  /  2021/06/24 02:30:29 @cclarice    #
+#    Created/Updated: 2021/06/24 03:49:28  /  2021/06/24 03:49:33 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,8 @@ fclean: clean
 norm:
 	@$(SAY) "\033[33;1m"
 	@norminette src
+	@$(SAY) "\033[36;1m"
+	@norminette src_bonus
 	@$(SAY) "\033[0m"
 
 re: fclean all

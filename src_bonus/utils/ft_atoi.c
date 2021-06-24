@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   ft_atoi.c                                cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 03:36:18  /  2021/06/24 03:36:21 @cclarice   */
+/*   Created/Updated: 2021/06/24 03:50:22  /  2021/06/24 03:50:28 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,3 @@ t_sort	*create_sort(t_sort *sort, int *d, unsigned int *i, int c)
 	sort->bl = NULL;
 	return (sort);
 }
-

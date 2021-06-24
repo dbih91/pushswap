@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 03:35:23  /  2021/06/24 03:35:33 @cclarice   */
+/*   Created/Updated: 2021/06/24 03:50:04  /  2021/06/24 03:50:09 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void	null_cc(char str[5000000])
 {
-	int ptr;
+	int	ptr;
 
 	ptr = 0;
 	while (ptr != 5000000)
@@ -99,7 +99,7 @@ void	checking(t_sort *sort, int *d, unsigned int *i, int c)
 	clear_sort(sort);
 }
 
-int main(int c, char *v[])
+int	main(int c, char *v[])
 {
 	t_sort				sort;
 	unsigned int		*i;
