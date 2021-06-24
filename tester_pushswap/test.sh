@@ -14,6 +14,7 @@ PUSH_SWAP="./push_swap"
 
 # Include negative numbers                                               # ??? #
 	NEG=1
+	CHECKER_TEST=0
 
 # Hello
 echo -e \
@@ -142,7 +143,7 @@ done
 ALL="${ARR[*]}" # ALL is random field of numbers
 
 # Start of two branches
-if  [ 1 == 1 ]
+if  [ 1 == $CHECKER_TEST ]
 then
 	# Checker Branch
 	echo
