@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   main.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 05:24:13  /  2021/06/24 05:26:19 @cclarice   */
+/*   Created/Updated: 2021/06/24 05:36:09  /  2021/06/24 05:36:28 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ int	count_me(char *str)
 	c = 0;
 	while (*str)
 	{
-		if (*str == '-' || (*str >= '0' && *str <= '9'))
+		if ((*str == '-' && str[1] >= '0' && str[1] <= '9')
+			|| (*str >= '0' && *str <= '9'))
 		{
 			c++;
 			while (*str == '-' || (*str >= '0' && *str <= '9'))
@@ -117,7 +118,8 @@ int	main(int c, char *v[])
 
 	sort_ready(&sort);
 	ptr = 0;
-	c--;
+	if (--c == 0)
+		return (0);
 	while (c != 0)
 	{
 		if (v[1][ptr] == 0 && --c)
