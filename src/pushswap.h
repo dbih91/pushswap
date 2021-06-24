@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   pushswap.h                               cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 00:20:02  /  2021/06/24 00:20:04 @cclarice   */
+/*   Created/Updated: 2021/06/24 04:50:52  /  2021/06/24 04:50:56 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,9 @@ unsigned int	get_smallest(t_elem *stack);
 unsigned int	get_biggest(t_elem *stack);
 t_elem			*ft_newelem(int nbr, unsigned int index);
 void			exit_if_sorted(t_sort *sort);
+t_elem			*create_list(int *d, unsigned int *i, int c, unsigned int *l);
+void			clear_sort(t_sort *sort);
+t_sort			*create_sort(t_sort *sort, int *d, unsigned int *i, int c);
 
 // game rules
 void			swap_a(t_sort *sort);

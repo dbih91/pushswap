@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   ft_atoi.c                                cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 03:36:03  /  2021/06/24 03:36:10 @cclarice   */
+/*   Created/Updated: 2021/06/24 04:50:36  /  2021/06/24 04:50:39 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,65 @@ int	ft_atoi(const char *str)
 		return (-2147483648);
 	}
 	return (ret * sgn);
+}
+
+t_elem	*create_list(int *d, unsigned int *i, int c, unsigned int *l)
+{
+	t_elem	*ptr;
+	t_elem	*ret;
+	int		ip;
+
+	ip = 0;
+	ret = ft_newelem(d[ip], i[ip]);
+	ip++;
+	ptr = ret;
+	while (ip < c)
+	{
+		ptr->n = ft_newelem(d[ip], i[ip]);
+		ip++;
+		ptr = ptr->n;
+	}
+	ptr->n = NULL;
+	*l = ip;
+	return (ret);
+}
+
+void	clear_sort(t_sort *sort)
+{
+	t_elem	*ptr;
+	t_elem	*nxt;
+
+	ptr = sort->a;
+	while (ptr)
+	{
+		nxt = ptr->n;
+		free(ptr);
+		ptr = nxt;
+	}
+	ptr = sort->b;
+	while (ptr)
+	{
+		nxt = ptr->n;
+		free(ptr);
+		ptr = nxt;
+	}
+	sort->a = NULL;
+	sort->b = NULL;
+}
+
+t_sort	*create_sort(t_sort *sort, int *d, unsigned int *i, int c)
+{
+	t_elem	*last;
+
+	clear_sort(sort);
+	sort->a = create_list(d, i, c, &sort->l);
+	sort->la = sort->l;
+	sort->lb = 0;
+	last = sort->a;
+	while (last->n)
+		last = last->n;
+	sort->al = last;
+	sort->bl = NULL;
+	exit_if_sorted(sort);
+	return (sort);
 }

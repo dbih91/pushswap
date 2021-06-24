@@ -12,7 +12,7 @@
 #                                                                              #
 #    Makefile                                 cclarice@student.21-school.ru    #
 #                                                                              #
-#    Created/Updated: 2021/06/24 03:49:28  /  2021/06/24 03:49:33 @cclarice    #
+#    Created/Updated: 2021/06/24 05:27:44  /  2021/06/24 05:27:44 @cclarice    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ B_SRC_RULES  = push.c reverse.c rotate.c swap.c
 B_SRC_UTILS  = ft_atoi.c ft_putint.c ft_strlen.c convert.c sort_utils.c
 B_SRC  = $(addprefix rules/, $(B_SRC_RULES)) \
          $(addprefix utils/, $(B_SRC_UTILS)) \
+         checker.c \
          main.c
 B_SRCS = $(addprefix $(B_SRCF)/, $(B_SRC))
 

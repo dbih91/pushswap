@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   checker.h                                cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 03:34:34  /  2021/06/24 03:34:36 @cclarice   */
+/*   Created/Updated: 2021/06/24 05:27:19  /  2021/06/24 05:27:21 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ typedef struct s_sort
 	int				vi;
 	int				trash;
 }				t_sort;
+
+// Checker
+void			check_parce(t_sort *sort, char s[5000000]);
+void			checker(t_sort *sort, char s[5000000], int p);
+void			checking(t_sort *sort, int *d, unsigned int *i, int c);
 
 // Sueta
 t_elem			*create_list(int *d, unsigned int *i, int c, unsigned int *l);
