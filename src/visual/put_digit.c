@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   put_digit.c                              cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/01 23:24:57  /  2021/06/01 23:32:02 @cclarice   */
+/*   Created/Updated: 2021/06/23 22:54:55  /  2021/06/23 22:54:55 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	put_nbr(int d)
 
 long	nbr_len(int d)
 {
-	long ret;
+	long	ret;
 
 	ret = 1;
 	if (d < 0)
@@ -51,7 +51,6 @@ long	nbr_len(int d)
 
 void	put_digit(int d, int w, unsigned int i, int c)
 {
-	//write(1, "\033[38;2;0;255;0m", 15);
 	write(1, "\033[38;2;32;", 10);
 	if (c >= 1)
 		put_nbr(255 - i * c);

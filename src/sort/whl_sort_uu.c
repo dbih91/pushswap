@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   whl_sort_uu.c                            cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/23 22:28:26  /  2021/06/23 22:30:03 @cclarice   */
+/*   Created/Updated: 2021/06/23 22:59:28  /  2021/06/23 22:59:32 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,11 @@ unsigned int	mdl(int i)
 	return ((unsigned int)i);
 }
 
-void	find_distances(t_sort *sort, t_elem *ptrb, t_elem *ptra, t_elem *ret)
+int	find_distances2(t_sort *sort, t_elem *ptrb, t_elem *ptra)
 {
 	int	i;
 
 	i = 0;
-	if (mdl(ptra->a) > ret->l)
-	{
-		ptra->b = 0;
-		ptra->l = 0xffffff;
-		return ;
-	}
-	if (sort->bl->i > ptra->i && ptra->i > sort->b->i)
-	{
-		ptra->b = 0;
-		ptra->l = mdl(ptra->a);
-		return ;
-	}
 	while (ptrb && ptrb->n)
 	{
 		i++;
@@ -56,6 +44,26 @@ void	find_distances(t_sort *sort, t_elem *ptrb, t_elem *ptra, t_elem *ret)
 		ptrb = ptrb->n;
 	}
 	ptra->b = i;
+	return (i);
+}
+
+void	find_distances(t_sort *sort, t_elem *ptrb, t_elem *ptra, t_elem *ret)
+{
+	int	i;
+
+	if (mdl(ptra->a) > ret->l)
+	{
+		ptra->b = 0;
+		ptra->l = 0xffffff;
+		return ;
+	}
+	if (sort->bl->i > ptra->i && ptra->i > sort->b->i)
+	{
+		ptra->b = 0;
+		ptra->l = mdl(ptra->a);
+		return ;
+	}
+	i = find_distances2(sort, ptrb, ptra);
 	if (ptra->a > 0 && ptra->b > 0)
 	{
 		if (mdl(ptra->a) > mdl(ptra->b))
@@ -69,8 +77,8 @@ void	find_distances(t_sort *sort, t_elem *ptrb, t_elem *ptra, t_elem *ret)
 
 t_elem	*add_distances(t_sort *sort)
 {
-	t_elem *ptr;
-	t_elem *ret;
+	t_elem	*ptr;
+	t_elem	*ret;
 
 	ptr = sort->a;
 	ret = ptr;
@@ -88,8 +96,8 @@ t_elem	*add_distances(t_sort *sort)
 
 t_elem	*get_distances(t_sort *sort)
 {
-	t_elem			*ptr;
-	int	i;
+	t_elem	*ptr;
+	int		i;
 
 	i = 0;
 	ptr = sort->a;
@@ -108,23 +116,4 @@ t_elem	*get_distances(t_sort *sort)
 		ptr = ptr->n;
 	}
 	return (add_distances(sort));
-}
-
-int		get_distance_index(t_elem *ptr, unsigned int l, unsigned int i)
-{
-	int ret;
-
-	ret = 0;
-	while (ptr->i != i)
-	{
-		ret++;
-		if (ret == l / 2 + l % 2)
-		{
-			if (l % 2)
-				ret--;
-			ret *= -1;
-		}
-		ptr = ptr->n;
-	}
-	return (ret);
 }

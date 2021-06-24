@@ -10,10 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   visual_utils.c                           cclarice@student.21-school.ru   */
+/*   ft_strlen.c                              cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/05/29 19:13:45  /  2021/05/31 17:58:38 @cclarice   */
+/*   Created/Updated: 2021/06/24 00:55:01  /  2021/06/24 00:56:35 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pushswap.h"
+#include "../checker.h"
+
+unsigned int	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}

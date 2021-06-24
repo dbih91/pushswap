@@ -13,12 +13,7 @@ PUSH_SWAP="./push_swap"
 
 
 # Include negative numbers                                               # ??? #
-if [ 1 == $(echo $3 | wc -w) ]
-then
 	NEG=1
-else
-	NEG=0
-fi
 
 # Hello
 echo -e \
@@ -114,9 +109,9 @@ if [[ $NOW > $LIMIT ]]
 then
 	mkdir -p test_output
 	echo "NOW: $NOW LIMIT: $LIMIT"
-	echo -en "\n\n\n /        push_swap        \\ \n   Now     $NOW\n   Average $AVG\n   Maximum $MAX\n   Repeats $ITR\n \    cclarice's tester    /" > "output/Info_$ITR.txt"
-	echo $(./push_swap ALL) > "output/Returns_$ITR.txt"
-	echo $ALL > "output/output_$ITR.txt"
+	echo -en "\n\n\n /        push_swap        \\ \n   Now     $NOW\n   Average $AVG\n   Maximum $MAX\n   Repeats $ITR\n \    cclarice's tester    /" > "test_output/Info_$ITR.txt"
+	echo $(./push_swap $ALL) > "test_output/Returns_$ITR.txt"
+	echo $ALL > "test_output/output_$ITR.txt"
 	sleep 2.5s
 fi
 
@@ -147,13 +142,17 @@ done
 ALL="${ARR[*]}" # ALL is random field of numbers
 
 # Start of two branches
-if  [ $V == "-v*" ]
+if  [ 1 == 1 ]
 then
-	# Visual branch
-	./push_swap $V $ALL
-	exit
+	# Checker Branch
+	echo
+	echo Original:
+	$PUSH_SWAP $ALL | $CHECKER $ALL
+	echo Your:
+	$PUSH_SWAP $ALL | ${PATH_TO}checker $ALL
+	sleep 0.1s
 else
-	# Testing branch
+	# Testing Branch
 	NOW=$((0+$($PUSH_SWAP $ALL | wc -w)))
 	RET=$($PUSH_SWAP $ALL | $CHECKER $ALL)
 	if [[ (($NOW -gt $MAX)) ]]

@@ -10,72 +10,88 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   swap.c                                   cclarice@student.21-school.ru   */
+/*   rotate.c                                 cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 00:03:25  /  2021/06/24 00:03:29 @cclarice   */
+/*   Created/Updated: 2021/06/24 00:47:55  /  2021/06/24 00:52:08 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pushswap.h"
+#include "../checker.h"
 
-// sa: swap a - swap the first 2 elements at the top of stack a. 
-// sb: swap b - swap the first 2 elements at the top of stack b.
-// ss: sa and sb at the same time.
-//                              (Do nothing if there is only one or no elements)
+// ra : rotate a - shift up all elements of stack a by 1.
+// rb : rotate b - shift up all elements of stack b by 1.
+// rr : ra and rb at the same time.
+//                                      (The first element becomes the last one)
 
-void	swap_a(t_sort *sort)
+void	rota_a(t_sort *sort)
 {
 	t_elem	*frst;
+	t_elem	*last;
 
-	if (sort->a && sort->a->n && !sort->a->n->n)
-		sort->al = sort->a;
 	if (sort->a && sort->a->n)
 	{
 		frst = sort->a;
 		sort->a = sort->a->n;
-		frst->n = sort->a->n;
-		sort->a->n = frst;
+		last = sort->a;
+		while (last->n)
+			last = last->n;
+		last->n = frst;
+		frst->n = NULL;
+		sort->al = frst;
 	}
-	visual(sort, "sa\n");
 }
 
-void	swap_b(t_sort *sort)
+void	rota_b(t_sort *sort)
 {
 	t_elem	*frst;
+	t_elem	*last;
 
-	if (sort->b && sort->b->n && !sort->b->n->n)
-		sort->bl = sort->b;
 	if (sort->b && sort->b->n)
 	{
 		frst = sort->b;
 		sort->b = sort->b->n;
-		frst->n = sort->b->n;
-		sort->b->n = frst;
+		last = sort->b;
+		while (last->n)
+			last = last->n;
+		last->n = frst;
+		frst->n = NULL;
+		sort->bl = frst;
 	}
-	visual(sort, "sb\n");
 }
 
-void	swap_s(t_sort *sort)
+void	sueta(t_sort *sort)
 {
 	t_elem	*frst;
+	t_elem	*last;
 
-	if (sort->a && sort->a->n && !sort->a->n->n)
-		sort->al = sort->a;
-	if (sort->b && sort->b->n && !sort->b->n->n)
-		sort->bl = sort->b;
 	if (sort->b && sort->b->n)
 	{
 		frst = sort->b;
 		sort->b = sort->b->n;
-		frst->n = sort->b->n;
-		sort->b->n = frst;
+		last = sort->b;
+		while (last->n)
+			last = last->n;
+		last->n = frst;
+		frst->n = NULL;
+		sort->bl = frst;
 	}
+}
+
+void	rota_r(t_sort *sort)
+{
+	t_elem	*frst;
+	t_elem	*last;
+
 	if (sort->a && sort->a->n)
 	{
 		frst = sort->a;
 		sort->a = sort->a->n;
-		frst->n = sort->a->n;
-		sort->a->n = frst;
+		last = sort->a;
+		while (last->n)
+			last = last->n;
+		last->n = frst;
+		frst->n = NULL;
+		sort->al = frst;
 	}
-	visual(sort, "ss\n");
+	sueta(sort);
 }

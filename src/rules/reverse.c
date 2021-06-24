@@ -12,7 +12,7 @@
 /*                                                                            */
 /*   reverse.c                                cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/18 16:29:51  /  2021/06/18 16:30:51 @cclarice   */
+/*   Created/Updated: 2021/06/24 00:08:13  /  2021/06/24 00:08:18 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 void	rrta_a(t_sort *sort)
 {
-	t_elem *last;
-	t_elem *prel;
+	t_elem	*last;
+	t_elem	*prel;
 
 	if (sort->a && sort->a->n)
 	{
@@ -44,8 +44,8 @@ void	rrta_a(t_sort *sort)
 
 void	rrta_b(t_sort *sort)
 {
-	t_elem *last;
-	t_elem *prel;
+	t_elem	*last;
+	t_elem	*prel;
 
 	if (sort->b && sort->b->n)
 	{
@@ -61,10 +61,28 @@ void	rrta_b(t_sort *sort)
 	visual(sort, "rrb\n");
 }
 
+void	syeta(t_sort *sort)
+{
+	t_elem	*last;
+	t_elem	*prel;
+
+	if (sort->a && sort->a->n)
+	{
+		prel = sort->a;
+		while (prel->n && prel->n->n)
+			prel = prel->n;
+		last = prel->n;
+		last->n = sort->a;
+		prel->n = NULL;
+		sort->al = prel;
+		sort->a = last;
+	}
+}
+
 void	rrta_r(t_sort *sort)
 {
-	t_elem *last;
-	t_elem *prel;
+	t_elem	*last;
+	t_elem	*prel;
 
 	if (sort->b && sort->b->n)
 	{
@@ -77,16 +95,6 @@ void	rrta_r(t_sort *sort)
 		sort->bl = prel;
 		sort->b = last;
 	}
-	if (sort->a && sort->a->n)
-	{
-		prel = sort->a;
-		while (prel->n && prel->n->n)
-			prel = prel->n;
-		last = prel->n;
-		last->n = sort->a;
-		prel->n = NULL;
-		sort->al = prel;
-		sort->a = last;
-	}
+	syeta(sort);
 	visual(sort, "rrr\n");
 }

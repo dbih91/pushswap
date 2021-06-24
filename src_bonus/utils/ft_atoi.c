@@ -10,13 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   main.c                                   cclarice@student.21-school.ru   */
+/*   ft_atoi.c                                cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 00:57:34  /  2021/06/24 00:57:38 @cclarice   */
+/*   Created/Updated: 2021/06/24 03:36:18  /  2021/06/24 03:36:21 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../checker.h"
+
+int	ft_atoi(const char *str)
+{
+	const char	sgn = 1 - (*str == '-') * 2;
+	int			ret;
+
+	ret = 0;
+	str += (*str == '-' || *str == '+');
+	while (*str == '0')
+		str++;
+	while ((*str >= '0' && *str <= '9' && ret <= 214748363)
+		|| (*str >= '0' && *str <= '7' && ret == 214748364))
+	{
+		ret *= 10;
+		ret += *str - '0';
+		str++;
+	}
+	if (*str >= '0' && *str <= '9')
+	{
+		if (sgn == 1)
+			return (2147483647);
+		return (-2147483648);
+	}
+	return (ret * sgn);
+}
 
 t_elem	*create_list(int *d, unsigned int *i, int c, unsigned int *l)
 {
@@ -75,59 +100,6 @@ t_sort	*create_sort(t_sort *sort, int *d, unsigned int *i, int c)
 		last = last->n;
 	sort->al = last;
 	sort->bl = NULL;
-	exit_if_sorted(sort);
 	return (sort);
 }
 
-void	sorting(t_sort *sort, int *d, unsigned int *i, int c)
-{
-	create_sort(sort, d, i, c);
-	if (sort->l >= 4 && sort->l < 750)
-	{
-		whl_sort(sort, ++sort->opr);
-		whl_sort(create_sort(sort, d, i, c), ++sort->opr);
-		whl_sort(create_sort(sort, d, i, c), ++sort->opr);
-		whl_sort(create_sort(sort, d, i, c), ++sort->opr);
-		sort->vi = 1;
-		if (sort->op[0] <= sort->op[1] && sort->op[0] <= sort->op[2]
-			&& sort->op[0] <= sort->op[3])
-			whl_sort(create_sort(sort, d, i, c), 0);
-		else if (sort->op[1] <= sort->op[0] && sort->op[1] <= sort->op[2]
-			&& sort->op[1] <= sort->op[3])
-			whl_sort(create_sort(sort, d, i, c), 1);
-		else if (sort->op[2] <= sort->op[0] && sort->op[2] <= sort->op[1]
-			&& sort->op[1] <= sort->op[3])
-			whl_sort(create_sort(sort, d, i, c), 2);
-		else
-			whl_sort(create_sort(sort, d, i, c), 3);
-	}
-	else if (++sort->vi && sort->l >= 750)
-		whl_sort(sort, 1);
-	else
-		sw1_sort(sort);
-	clear_sort(sort);
-}
-
-int	main(int c, char *v[])
-{
-	t_sort				sort;
-	unsigned int		*i;
-	int					*d;
-
-	sort.a = NULL;
-	sort.b = NULL;
-	sort.op[0] = 0;
-	sort.op[1] = 0;
-	sort.op[2] = 0;
-	sort.op[3] = 0;
-	sort.opr = -1;
-	(v++ && c--);
-	if (c && not_integer(v[0]))
-		exit_error();
-	sort.vi = 0;
-	if (c <= 1)
-		return (0);
-	convert_and_index(c, v, &d, &i);
-	sorting(&sort, d, i, c);
-	return (0);
-}

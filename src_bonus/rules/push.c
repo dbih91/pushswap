@@ -12,11 +12,11 @@
 /*                                                                            */
 /*   push.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 00:09:50  /  2021/06/24 00:09:52 @cclarice   */
+/*   Created/Updated: 2021/06/24 00:47:58  /  2021/06/24 00:52:07 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pushswap.h"
+#include "../checker.h"
 
 // pa: push a - take first element at the top of b and put it at the top of a.
 // pb: push b - take first element at the top of a and put it at the top of b.
@@ -44,7 +44,6 @@ void	push_a(t_sort *sort)
 	}
 	if (!sort->b)
 		sort->bl = NULL;
-	visual(sort, "pa\n");
 }
 
 void	push_b(t_sort *sort)
@@ -69,5 +68,4 @@ void	push_b(t_sort *sort)
 	}
 	if (!sort->a)
 		sort->al = NULL;
-	visual(sort, "pb\n");
 }

@@ -10,64 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   push.c                                   cclarice@student.21-school.ru   */
+/*   ft_putint.c                              cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 00:09:50  /  2021/06/24 00:09:52 @cclarice   */
+/*   Created/Updated: 2021/06/24 00:55:01  /  2021/06/24 00:56:44 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pushswap.h"
+#include "../checker.h"
 
-// pa: push a - take first element at the top of b and put it at the top of a.
-// pb: push b - take first element at the top of a and put it at the top of b.
-//                                               (Do nothing if b or a is empty)
-
-void	push_a(t_sort *sort)
+void	ft_putchar(const char c)
 {
-	t_elem	*ptr;
-
-	if (sort->b && ++sort->la)
-		sort->lb--;
-	if (sort->b && !sort->a)
-	{
-		sort->a = sort->b;
-		sort->b = sort->b->n;
-		sort->a->n = NULL;
-		sort->al = sort->a;
-	}
-	else if (sort->b)
-	{
-		ptr = sort->a;
-		sort->a = sort->b;
-		sort->b = sort->b->n;
-		sort->a->n = ptr;
-	}
-	if (!sort->b)
-		sort->bl = NULL;
-	visual(sort, "pa\n");
+	write(1, &c, 1);
 }
 
-void	push_b(t_sort *sort)
+void	ft_putint(int i)
 {
-	t_elem	*ptr;
-
-	if (sort->a && ++sort->lb)
-		sort->la--;
-	if (sort->a && !sort->b)
+	if (i <= -1)
 	{
-		sort->b = sort->a;
-		sort->a = sort->a->n;
-		sort->b->n = NULL;
-		sort->bl = sort->b;
+		ft_putchar('-');
+		if (i == -2147483648)
+			write(1, "2147483648", 10);
+		else
+			ft_putint(i * -1);
 	}
-	else if (sort->a)
+	else
 	{
-		ptr = sort->b;
-		sort->b = sort->a;
-		sort->a = sort->a->n;
-		sort->b->n = ptr;
+		if (i / 10)
+			ft_putint(i / 10);
+		ft_putchar(i % 10 + '0');
 	}
-	if (!sort->a)
-		sort->al = NULL;
-	visual(sort, "pb\n");
 }

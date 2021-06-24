@@ -10,64 +10,84 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   push.c                                   cclarice@student.21-school.ru   */
+/*   sort_utils.c                             cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 00:09:50  /  2021/06/24 00:09:52 @cclarice   */
+/*   Created/Updated: 2021/06/24 03:25:04  /  2021/06/24 03:36:48 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pushswap.h"
+#include "../checker.h"
 
-// pa: push a - take first element at the top of b and put it at the top of a.
-// pb: push b - take first element at the top of a and put it at the top of b.
-//                                               (Do nothing if b or a is empty)
-
-void	push_a(t_sort *sort)
+unsigned int	get_smallest(t_elem *stack)
 {
-	t_elem	*ptr;
+	unsigned int	ret;
+	t_elem			*ptr;
 
-	if (sort->b && ++sort->la)
-		sort->lb--;
-	if (sort->b && !sort->a)
+	ptr = stack;
+	ret = 0xffffffff;
+	while (ptr)
 	{
-		sort->a = sort->b;
-		sort->b = sort->b->n;
-		sort->a->n = NULL;
-		sort->al = sort->a;
+		if (ptr->i < ret)
+			ret = ptr->i;
+		ptr = ptr->n;
 	}
-	else if (sort->b)
-	{
-		ptr = sort->a;
-		sort->a = sort->b;
-		sort->b = sort->b->n;
-		sort->a->n = ptr;
-	}
-	if (!sort->b)
-		sort->bl = NULL;
-	visual(sort, "pa\n");
+	return (ret);
 }
 
-void	push_b(t_sort *sort)
+unsigned int	get_biggest(t_elem *stack)
+{
+	unsigned int	ret;
+	t_elem			*ptr;
+
+	ptr = stack;
+	ret = 0;
+	while (ptr)
+	{
+		if (ptr->i > ret)
+			ret = ptr->i;
+		ptr = ptr->n;
+	}
+	return (ret);
+}
+
+void	exit_error(void)
+{
+	write(2, "Error\n", 6);
+	exit(0);
+}
+
+t_elem	*ft_newelem(int nbr, unsigned int index)
 {
 	t_elem	*ptr;
 
-	if (sort->a && ++sort->lb)
-		sort->la--;
-	if (sort->a && !sort->b)
+	ptr = malloc(sizeof(t_elem));
+	if (!ptr)
+		exit_error();
+	ptr->n = NULL;
+	ptr->d = nbr;
+	ptr->i = index;
+	ptr->w = 0;
+	return (ptr);
+}
+
+void	ok_if_sorted(t_sort *sort)
+{
+	t_elem	*ptr;
+
+	ptr = sort->a;
+	if (!ptr || !ptr->n)
 	{
-		sort->b = sort->a;
-		sort->a = sort->a->n;
-		sort->b->n = NULL;
-		sort->bl = sort->b;
+		write(1, "OK\n", 3);
+		return ;
 	}
-	else if (sort->a)
+	while (ptr->n)
 	{
-		ptr = sort->b;
-		sort->b = sort->a;
-		sort->a = sort->a->n;
-		sort->b->n = ptr;
+		if (ptr->i > ptr->n->i)
+		{
+			write(1, "KO\n", 3);
+			return ;
+		}
+		ptr = ptr->n;
 	}
-	if (!sort->a)
-		sort->al = NULL;
-	visual(sort, "pb\n");
+	write(1, "OK\n", 3);
 }

@@ -10,64 +10,69 @@
 /*                                                                            */
 /* ************************************************************************** */
 /*                                                                            */
-/*   push.c                                   cclarice@student.21-school.ru   */
+/*   swap.c                                   cclarice@student.21-school.ru   */
 /*                                                                            */
-/*   Created/Updated: 2021/06/24 00:09:50  /  2021/06/24 00:09:52 @cclarice   */
+/*   Created/Updated: 2021/06/24 00:52:08  /  2021/06/24 02:31:37 @cclarice   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pushswap.h"
+#include "../checker.h"
 
-// pa: push a - take first element at the top of b and put it at the top of a.
-// pb: push b - take first element at the top of a and put it at the top of b.
-//                                               (Do nothing if b or a is empty)
+// sa: swap a - swap the first 2 elements at the top of stack a. 
+// sb: swap b - swap the first 2 elements at the top of stack b.
+// ss: sa and sb at the same time.
+//                              (Do nothing if there is only one or no elements)
 
-void	push_a(t_sort *sort)
+void	swap_a(t_sort *sort)
 {
-	t_elem	*ptr;
+	t_elem	*frst;
 
-	if (sort->b && ++sort->la)
-		sort->lb--;
-	if (sort->b && !sort->a)
-	{
-		sort->a = sort->b;
-		sort->b = sort->b->n;
-		sort->a->n = NULL;
+	if (sort->a && sort->a->n && !sort->a->n->n)
 		sort->al = sort->a;
-	}
-	else if (sort->b)
+	if (sort->a && sort->a->n)
 	{
-		ptr = sort->a;
-		sort->a = sort->b;
-		sort->b = sort->b->n;
-		sort->a->n = ptr;
+		frst = sort->a;
+		sort->a = sort->a->n;
+		frst->n = sort->a->n;
+		sort->a->n = frst;
 	}
-	if (!sort->b)
-		sort->bl = NULL;
-	visual(sort, "pa\n");
 }
 
-void	push_b(t_sort *sort)
+void	swap_b(t_sort *sort)
 {
-	t_elem	*ptr;
+	t_elem	*frst;
 
-	if (sort->a && ++sort->lb)
-		sort->la--;
-	if (sort->a && !sort->b)
-	{
-		sort->b = sort->a;
-		sort->a = sort->a->n;
-		sort->b->n = NULL;
+	if (sort->b && sort->b->n && !sort->b->n->n)
 		sort->bl = sort->b;
-	}
-	else if (sort->a)
+	if (sort->b && sort->b->n)
 	{
-		ptr = sort->b;
-		sort->b = sort->a;
-		sort->a = sort->a->n;
-		sort->b->n = ptr;
+		frst = sort->b;
+		sort->b = sort->b->n;
+		frst->n = sort->b->n;
+		sort->b->n = frst;
 	}
-	if (!sort->a)
-		sort->al = NULL;
-	visual(sort, "pb\n");
+}
+
+void	swap_s(t_sort *sort)
+{
+	t_elem	*frst;
+
+	if (sort->a && sort->a->n && !sort->a->n->n)
+		sort->al = sort->a;
+	if (sort->b && sort->b->n && !sort->b->n->n)
+		sort->bl = sort->b;
+	if (sort->b && sort->b->n)
+	{
+		frst = sort->b;
+		sort->b = sort->b->n;
+		frst->n = sort->b->n;
+		sort->b->n = frst;
+	}
+	if (sort->a && sort->a->n)
+	{
+		frst = sort->a;
+		sort->a = sort->a->n;
+		frst->n = sort->a->n;
+		sort->a->n = frst;
+	}
 }
